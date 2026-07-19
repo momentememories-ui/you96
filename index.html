@@ -7,23 +7,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Fredoka', sans-serif; -webkit-tap-highlight-color: transparent; }
-        body { background-color: #fff0f5; color: #ff4d6d; display: flex; justify-content: center; align-items: center; min-height: 100vh; overflow-x: hidden; }
+        body { background-color: #fff0f5; display: flex; justify-content: center; align-items: center; min-height: 100vh; overflow-x: hidden; }
         .phone-container { width: 100vw; height: 100vh; max-width: 450px; position: relative; background: #ffffff; box-shadow: 0 0 20px rgba(255, 77, 109, 0.1); overflow-y: auto; display: flex; flex-direction: column; }
         .page { display: none; width: 100%; min-height: 100%; padding: 30px 24px; flex-direction: column; align-items: center; justify-content: center; animation: fadeIn 0.5s ease-in-out; }
         .page.active { display: flex; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        img { max-width: 100%; object-fit: cover; border-radius: 16px; border: 3px solid #fff; box-shadow: 0 8px 20px rgba(255, 77, 109, 0.1); }
-        button.next-btn { background-color: #ff758f; color: white; border: none; padding: 14px 28px; font-size: 1.1rem; font-weight: 600; border-radius: 30px; cursor: pointer; margin-top: 30px; box-shadow: 0 4px 10px rgba(255, 117, 143, 0.3); }
-
-        /* PAGE 2: สไตล์เดิมที่คุณชอบ */
-        #page2 { justify-content: center; background-color: #ffffff; }
-        .img-wrapper-p2 { width: 85%; max-height: 220px; margin-bottom: 35px; }
-        .horizontal-counter { font-weight: 700; font-size: 2.5rem; display: flex; align-items: center; justify-content: center; gap: 4px; color: #ff758f; text-shadow: 0px 4px 8px rgba(0,0,0,0.06); }
-        #days-box { color: #ff85a2; } #hours-box { color: #fbc4ab; } #minutes-box { color: #b7e4c7; } #seconds-box { color: #a8dadc; }
-        .colon { color: #ffccd5; font-size: 2.2rem; padding: 0 2px; }
-        .labels-row { display: flex; justify-content: center; gap: 32px; font-size: 0.8rem; font-weight: 600; color: #ffa6c9; margin-bottom: 30px; }
-
-        /* PAGE 4: Interactive Cake */
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        img { max-width: 100%; border-radius: 16px; border: 3px solid #fff; }
+        button.next-btn { background-color: #ff758f; color: white; border: none; padding: 14px 28px; font-size: 1.1rem; font-weight: 600; border-radius: 30px; cursor: pointer; margin-top: 30px; }
+        
+        /* PAGE 0-3 Style (ล็อกสไตล์เดิม) */
+        #page0, #page1 { background-image: url('photo1.jpg'); background-size: cover; background-position: center top; }
+        .dot { width: 12px; height: 12px; border: 2px solid #ffccd5; border-radius: 50%; display: inline-block; margin: 0 5px; }
+        .dot.filled { background-color: #ff758f; }
+        .key { aspect-ratio: 1/1; border-radius: 50%; background: #fff; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: #ff4d6d; cursor: pointer; border: 1px solid #ffccd5; }
+        .horizontal-counter { font-weight: 700; font-size: 2.5rem; display: flex; justify-content: center; color: #ff758f; }
+        .colon { color: #ffccd5; }
+        .labels-row { display: flex; justify-content: center; gap: 32px; font-size: 0.8rem; font-weight: 600; color: #ffa6c9; }
+        
+        /* PAGE 4 Style (Interactive) */
         #page4 { background-color: #fff0f5; text-align: center; }
         .cake-interactive-container { position: relative; width: 85%; max-width: 320px; margin: 20px auto; cursor: pointer; }
         .placed-candle { position: absolute; width: 24px; transform: translate(-50%, -100%); pointer-events: none; }
@@ -31,24 +32,33 @@
 </head>
 <body>
     <div class="phone-container">
-        <!-- หน้า 0, 1 เหมือนเดิม -->
         <div id="page0" class="page active"><button class="next-btn" onclick="navigateTo('page1')">Let's start the journey ❤️</button></div>
-        <div id="page1" class="page">... (คงเดิม) ...</div>
+        
+        <div id="page1" class="page">
+            <div class="dots-container" id="dotsContainer"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+            <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:12px; width:100%; max-width:270px; margin-top:20px;">
+                <div class="key" onclick="pressKey('1')">1</div><div class="key" onclick="pressKey('2')">2</div><div class="key" onclick="pressKey('3')">3</div>
+                <div class="key" onclick="pressKey('4')">4</div><div class="key" onclick="pressKey('5')">5</div><div class="key" onclick="pressKey('6')">6</div>
+                <div class="key" onclick="pressKey('7')">7</div><div class="key" onclick="pressKey('8')">8</div><div class="key" onclick="pressKey('9')">9</div>
+                <div></div><div class="key" onclick="pressKey('0')">0</div><div class="key" onclick="clearLast()">&larr;</div>
+            </div>
+        </div>
 
-        <!-- หน้า 2: กู้คืนสไตล์เดิม -->
         <div id="page2" class="page">
-            <h1 id="counter-title">Countdown to our 1st Anniversary</h1>
             <div class="img-wrapper-p2"><img src="photo2.jpg"></div>
             <div class="horizontal-counter">
                 <span id="days-box">00</span><span class="colon">:</span><span id="hours-box">00</span><span class="colon">:</span>
                 <span id="minutes-box">00</span><span class="colon">:</span><span id="seconds-box">00</span>
             </div>
             <div class="labels-row"><span>days</span><span>hours</span><span>mins</span><span>secs</span></div>
-            <button class="next-btn" onclick="goToLetter()">Click to read my letter</button>
+            <button class="next-btn" onclick="navigateTo('page3')">Click to read my letter</button>
         </div>
 
-        <!-- หน้า 3 & 4 (คงเดิม) -->
-        <div id="page3" class="page">... (คงเดิม) ...</div>
+        <div id="page3" class="page">
+            <img src="photo3.png" style="border-radius:0;">
+            <button class="next-btn" onclick="navigateTo('page4')">Click to enter the birthday surprise 🎉</button>
+        </div>
+
         <div id="page4" class="page">
             <h1>Make a Wish ✨</h1>
             <div class="cake-interactive-container" id="cakeContainer" onclick="placeCandle(event)">
@@ -57,11 +67,14 @@
             <button class="next-btn" onclick="finishBlowing()">Blow the Candles 🎂</button>
         </div>
     </div>
+
     <script>
-        // ฟังก์ชันคงเดิมทั้งหมดครับ
+        let currentInput = "";
         function navigateTo(p) { document.querySelectorAll('.page').forEach(page => page.classList.remove('active')); document.getElementById(p).classList.add('active'); }
-        function goToLetter() { navigateTo('page3'); }
-        function goToCakePage() { navigateTo('page4'); }
+        function pressKey(n) { if(currentInput.length < 6) { currentInput += n; updateDots(); if(currentInput.length === 6 && currentInput === "270725") navigateTo('page2'); } }
+        function clearLast() { currentInput = currentInput.slice(0, -1); updateDots(); }
+        function updateDots() { document.querySelectorAll('.dot').forEach((d, i) => d.className = i < currentInput.length ? 'dot filled' : 'dot'); }
+        
         function placeCandle(e) {
             const cont = document.getElementById('cakeContainer');
             const rect = cont.getBoundingClientRect();
@@ -73,8 +86,9 @@
             cont.appendChild(candle);
         }
         function finishBlowing() {
-            document.querySelectorAll('.placed-candle').forEach(c => c.src = 'candle-off.png');
-            alert("Happy Anniversary! 🎂");
+            const candles = document.querySelectorAll('.placed-candle');
+            candles.forEach(c => c.src = 'candle-off.png');
+            if(candles.length > 0) alert("Happy Anniversary! 🎂");
         }
     </script>
 </body>
