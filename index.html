@@ -68,7 +68,6 @@
             </div>
         </div>
 
-        <!-- หน้า 4 ใหม่ตามคำสั่ง -->
         <div id="page4" class="page" style="background-color: #ffffff; padding: 0; position: relative; overflow: hidden;">
             <div id="cake-area" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('cake.png'); background-size: contain; background-repeat: no-repeat; background-position: center; cursor: pointer;" onclick="placeCandle(event)"></div>
             <div style="position: absolute; bottom: 40px; z-index: 10; width: 100%; display: flex; justify-content: center;">
@@ -103,7 +102,8 @@
         function placeCandle(e) {
             if (candleCount < MAX_CANDLES) {
                 const area = document.getElementById('cake-area'), c = document.createElement('img');
-                c.src = 'candle.png'; c.style.position = 'absolute'; c.style.width = '80px';
+                c.src = 'candle.png'; c.className = 'my-candle'; 
+                c.style.position = 'absolute'; c.style.width = '80px'; c.style.border = 'none'; c.style.boxShadow = 'none';
                 const rect = area.getBoundingClientRect();
                 c.style.left = (e.clientX - rect.left - 40) + 'px'; c.style.top = (e.clientY - rect.top - 70) + 'px';
                 c.style.pointerEvents = 'none'; area.appendChild(c); candleCount++;
@@ -112,7 +112,11 @@
         }
         function goToLetter() { navigateTo('page3'); document.querySelector('.phone-container').scrollTop = 0; }
         function goToCakePage() { navigateTo('page4'); document.querySelector('.phone-container').scrollTop = 0; }
-        function finishBlowing() { alert("Happy Anniversary! 🎂❤️"); }
+        function finishBlowing() { 
+            const candles = document.querySelectorAll('.my-candle');
+            candles.forEach(c => c.src = 'candle-off.png');
+            document.getElementById('blow-btn').style.display = 'none';
+        }
     </script>
 </body>
 </html>
