@@ -274,41 +274,30 @@
             margin-bottom: 30px;
         }
 
-        /* PAGE 3: Letter - ปรับปรุงระยะขอบความกว้างเพื่อไม่ให้ข้อความล้นรูปกระดาษโน้ต */
+        /* PAGE 3: Letter - ปรับปรุงแสดงผลรูปภาพ photo3.png ให้พอดีหน้าจอ */
         #page3 {
-            justify-content: flex-start;
-            padding: 60px 40px; /* เพิ่มระยะปาดขอบซ้าย-ขวาเป็น 40px เพื่อบีบข้อความให้อยู่ในกระดาษ */
-            background-image: url('photo3.png');
-            background-size: cover;
-            background-position: center;
-            position: relative;
+            justify-content: center;
+            padding: 20px;
+            background-color: #fff0f5;
         }
 
-        /* ปรับลดขนาดฟอนต์และระยะบรรทัดให้อ่านง่ายและพอดีกับตัวกระดาษโน้ต */
-        .letter-content {
+        /* กล่องครอบรูปจดหมายเพื่อคุมสัดส่วนให้สวยงาม ไม่ยาวหรือล้นเกินไป */
+        .letter-img-wrapper {
             width: 100%;
-            line-height: 1.5;
-            font-size: 0.85rem; /* ลดขนาดฟอนต์ลงจากเดิมเพื่อป้องกันการล้นขอบขวา */
-            color: #4a4a4a;
-            white-space: pre-line;
-            text-align: center; 
-            font-weight: 500;
-            text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.9); 
-            word-wrap: break-word; /* สั่งตัดคำอัตโนมัติเมื่อสิ้นสุดความกว้าง */
+            max-height: 85vh; /* จำกัดความสูงไม่ให้เกิน 85% ของหน้าจอ */
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        .cursor {
-            display: inline-block;
-            width: 2px;
-            height: 14px;
-            background-color: #ff4d6d;
-            animation: blink 0.7s infinite;
-            vertical-align: middle;
-            margin-left: 2px;
-        }
-
-        @keyframes blink {
-            50% { opacity: 0; }
+        .letter-img-wrapper img {
+            width: 100%;
+            height: auto;
+            max-height: 85vh;
+            object-fit: contain; /* ปรับรูปภาพให้พอดีกล่องโดยสัดส่วนไม่เพี้ยน */
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(255, 77, 109, 0.15);
+            border: none; /* เอาขอบขาวของแท็ก img ปกติออก */
         }
     </style>
 </head>
@@ -383,10 +372,10 @@
             <button class="next-btn" onclick="goToLetter()">Click to read my letter</button>
         </div>
 
-        <!-- PAGE 3: LETTER -->
+        <!-- PAGE 3: LETTER (แสดงผลรูปภาพ photo3.png พอดีสัดส่วนหน้าจอ) -->
         <div id="page3" class="page">
-            <div class="letter-content">
-                <span id="typing-text"></span><span class="cursor" id="cursor"></span>
+            <div class="letter-img-wrapper">
+                <img src="photo3.png" alt="My Letter to You" onerror="this.style.display='none';">
             </div>
         </div>
 
@@ -462,28 +451,23 @@
                 const now = new Date().getTime();
                 const difference = TARGET_DATE - now;
 
-                // เมื่อการนับถอยหลังสิ้นสุดลงหรือเลยกำหนดแล้ว
                 if (difference <= 0) {
                     document.getElementById('days-box').innerText = "00";
                     document.getElementById('hours-box').innerText = "00";
                     document.getElementById('minutes-box').innerText = "00";
                     document.getElementById('seconds-box').innerText = "00";
                     
-                    // เปลี่ยนหัวเรื่องเป็นข้อความฉลองวันครบรอบ
                     titleElement.innerText = "Happy Anniversary 1 Year";
                     return;
                 }
 
-                // เมื่อยังอยู่ในช่วงนับถอยหลัง
                 titleElement.innerText = "Countdown to our 1st Anniversary";
 
-                // คำนวณหา วัน ชั่วโมง นาที วินาที จากเวลาที่เหลือทั้งหมด
                 const days = Math.floor(difference / (1000 * 60 * 60 * 24));
                 const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
-                // แสดงผลแบบใส่ 0 ข้างหน้าถ้าหลักเดียว
                 document.getElementById('days-box').innerText = String(days).padStart(2, '0');
                 document.getElementById('hours-box').innerText = String(hours).padStart(2, '0');
                 document.getElementById('minutes-box').innerText = String(minutes).padStart(2, '0');
@@ -494,39 +478,8 @@
             setInterval(updateTimer, 1000);
         }
 
-        // --- TYPING LETTER SYSTEM ---
-        const letterText = `Happy Official 1st Anniversary, my one and only, Jesse Lee. 
-
-I still remember the first day we started talking and the first day we met. Every memory we've created together is so precious to me, and I treasure with all my heart.
-
-I can't believe it's already been a year. Time has passed by so quickly, and soon we'll be celebrating your birthday together for the second time. Looking back, we've shared so many moments—happiness, laughter, tears, disagreements, and countless unforgettable memories. But no matter what we've been through, we've never let go of each other's hand.
-
-To me, you are the most amazing boyfriend. You've been consistent, loyal, caring, and exactly the same wonderful person since the very beginning. You make me feel like the luckiest woman because I've never experienced a love like yours before. Thank you for loving me the way you do. And I hope you know that you deserve every bit of that love in return.
-
-No matter what life brings us, I know we'll keep holding hands and overcome every obstacle together… even the really difficult ones—like your unbelievably loud burps and your deadly smelly farts that leave me with no choice but to surrender. 
-
-Thank you for being my safe place, my best friend, and the love of my life.
-
-I love you with all my heart, today, tomorrow, and always.
-
-Happy 1st Anniversary, my love. Here's to forever.`;
-
         function goToLetter() {
             navigateTo('page3');
-            typeWriter();
-        }
-
-        let index = 0;
-        function typeWriter() {
-            if (index < letterText.length) {
-                document.getElementById("typing-text").textContent += letterText.charAt(index);
-                index++;
-                const container = document.querySelector('.phone-container');
-                container.scrollTop = container.scrollHeight;
-                setTimeout(typeWriter, 40); 
-            } else {
-                document.getElementById("cursor").style.display = "none";
-            }
         }
     </script>
 </body>
