@@ -78,15 +78,16 @@
         </div>
         
         <div id="page5" class="page" style="background-color: #fff0f5; justify-content: center; padding: 40px 20px;">
-            <div style="display: flex; flex-direction: column; gap: 25px; width: 100%; max-width: 300px; align-items: center;">
-                <div class="gift-item" onclick="showContent('cakedu.png', '')" style="cursor: pointer;"><img src="gift1.png" alt="Gift 1" style="width: 120px; border: none; box-shadow: none; background: transparent;"></div>
-                <div class="gift-item" onclick="showContent('flower.png', '')" style="cursor: pointer;"><img src="gift2.png" alt="Gift 2" style="width: 120px; border: none; box-shadow: none; background: transparent;"></div>
-                <div class="gift-item" onclick="showContent('dinner', 'Dinner at Sancreed well cafe')" style="cursor: pointer;"><img src="gift3.png" alt="Gift 3" style="width: 120px; border: none; box-shadow: none; background: transparent;"></div>
+            <div id="gift-grid" style="display: flex; flex-direction: column; gap: 25px; width: 100%; max-width: 300px; align-items: center;">
+                <div class="gift-item" onclick="openGift('cakedu.png', '', 0)" style="cursor: pointer;"><img src="gift1.png" alt="Gift 1" style="width: 120px; border: none; box-shadow: none; background: transparent;"></div>
+                <div class="gift-item" onclick="openGift('flower.png', '', 1)" style="cursor: pointer;"><img src="gift2.png" alt="Gift 2" style="width: 120px; border: none; box-shadow: none; background: transparent;"></div>
+                <div class="gift-item" onclick="openGift('dinner', 'Dinner at Sancreed well cafe', 2)" style="cursor: pointer;"><img src="gift3.png" alt="Gift 3" style="width: 120px; border: none; box-shadow: none; background: transparent;"></div>
             </div>
-            <div id="gift-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.95); z-index: 100; flex-direction: column; align-items: center; justify-content: center; padding: 20px;">
+            <button id="memories-btn" class="next-btn" style="display: none; margin-top: 30px;">Click to see our memories</button>
+            <div id="gift-modal" style="display: none; opacity: 0; transition: opacity 0.4s ease; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.95); z-index: 100; flex-direction: column; align-items: center; justify-content: center; padding: 20px;">
                 <img id="modal-img" src="" style="max-width: 80%; border: none; box-shadow: none; background: transparent;">
                 <p id="modal-text" style="margin-top: 20px; font-size: 1.5rem; color: #ff758f; font-weight: bold; text-align: center;"></p>
-                <button onclick="document.getElementById('gift-modal').style.display='none'" style="margin-top: 30px; padding: 10px 20px; border-radius: 20px; border: none; background: #ffccd5; color: #ff4d6d; cursor: pointer;">Close</button>
+                <button onclick="closeModal()" style="margin-top: 30px; padding: 10px 20px; border-radius: 20px; border: none; background: #ffccd5; color: #ff4d6d; cursor: pointer;">Close</button>
             </div>
         </div>
     </div>
@@ -94,6 +95,7 @@
     <script>
         const CORRECT_PASSCODE = "270725";
         const TARGET_DATE = new Date("2026-07-27T00:00:00").getTime(); 
+        let openedGifts = [false, false, false];
         function startJourney() { document.getElementById('bgMusic').play(); navigateTo('page1'); }
         let currentInput = "", candleCount = 0;
         const dots = document.querySelectorAll('.dot'), page1 = document.getElementById('page1'), MAX_CANDLES = 6;
@@ -139,11 +141,19 @@
             document.getElementById('blow-btn').style.display = 'none';
             setTimeout(() => navigateTo('page5'), 1000);
         }
-        function showContent(src, text) {
+        function openGift(src, text, index) {
             const modal = document.getElementById('gift-modal'), img = document.getElementById('modal-img'), txt = document.getElementById('modal-text');
+            openedGifts[index] = true;
             if(src === 'dinner') { img.style.display = 'none'; txt.innerText = text; } 
             else { img.src = src; img.style.display = 'block'; txt.innerText = text; }
             modal.style.display = 'flex';
+            setTimeout(() => modal.style.opacity = '1', 10);
+            if (openedGifts.every(val => val === true)) document.getElementById('memories-btn').style.display = 'block';
+        }
+        function closeModal() {
+            const modal = document.getElementById('gift-modal');
+            modal.style.opacity = '0';
+            setTimeout(() => modal.style.display = 'none', 400);
         }
         function goToLetter() { navigateTo('page3'); document.querySelector('.phone-container').scrollTop = 0; }
         function goToCakePage() { navigateTo('page4'); document.querySelector('.phone-container').scrollTop = 0; }
