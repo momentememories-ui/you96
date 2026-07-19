@@ -274,32 +274,32 @@
             margin-bottom: 30px;
         }
 
-        /* PAGE 3: Letter */
+        /* PAGE 3: Letter - ปรับปรุงพื้นหลังเป็น photo3.png และจัดข้อความกึ่งกลาง */
         #page3 {
             justify-content: flex-start;
-            padding-top: 40px;
-            padding-bottom: 40px;
-            background-color: #fff0f5;
+            padding: 50px 24px;
+            background-image: url('photo3.png');
+            background-size: cover;
+            background-position: center;
+            position: relative;
         }
 
-        .letter-paper {
-            background: #ffffff; 
+        /* ข้อความลอยเด่น ไม่มีกรอบขาว และจัดกึ่งกลาง */
+        .letter-content {
             width: 100%;
-            padding: 25px 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(255, 77, 109, 0.1);
-            border: 1px solid #ffccd5;
-            line-height: 1.6;
-            font-size: 1rem;
+            line-height: 1.7;
+            font-size: 1.05rem;
             color: #4a4a4a;
             white-space: pre-line;
-            text-align: left;
+            text-align: center; /* จัดตัวอักษรให้อยู่กึ่งกลาง */
+            font-weight: 500;
+            text-shadow: 0px 1px 2px rgba(255, 255, 255, 0.8); /* เพิ่มมิติให้อ่านง่ายขึ้นบนพื้นหลัง */
         }
 
         .cursor {
             display: inline-block;
             width: 2px;
-            height: 15px;
+            height: 16px;
             background-color: #ff4d6d;
             animation: blink 0.7s infinite;
             vertical-align: middle;
@@ -382,9 +382,9 @@
             <button class="next-btn" onclick="goToLetter()">Click to read my letter</button>
         </div>
 
-        <!-- PAGE 3: LETTER -->
+        <!-- PAGE 3: LETTER (ปรับปรุงตามเงื่อนไขใหม่) -->
         <div id="page3" class="page">
-            <div class="letter-paper">
+            <div class="letter-content">
                 <span id="typing-text"></span><span class="cursor" id="cursor"></span>
             </div>
         </div>
