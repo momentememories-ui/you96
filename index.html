@@ -77,16 +77,14 @@
             </div>
         </div>
         
-        <!-- หน้าที่ 5: กล่องของขวัญ -->
-        <div id="page5" class="page" style="background-color: #fff0f5; justify-content: flex-start; padding: 40px 20px;">
-            <h2 style="color: #ff758f; margin-bottom: 30px;">Choose Your Gift</h2>
-            <div style="display: flex; flex-direction: column; gap: 25px; width: 100%; max-width: 300px;">
-                <div class="gift-item" onclick="showContent('cakedu.png', 'เค้กทุเรียนแสนอร่อย!')" style="cursor: pointer; text-align: center;"><img src="gift1.png" alt="Gift 1" style="width: 120px; border: none; box-shadow: 0 4px 10px rgba(0,0,0,0.1);"></div>
-                <div class="gift-item" onclick="showContent('flower.png', 'ช่อดอกไม้แทนใจ')" style="cursor: pointer; text-align: center;"><img src="gift2.png" alt="Gift 2" style="width: 120px; border: none; box-shadow: 0 4px 10px rgba(0,0,0,0.1);"></div>
-                <div class="gift-item" onclick="showContent('dinner', 'Dinner at Sancreed well cafe')" style="cursor: pointer; text-align: center;"><img src="gift3.png" alt="Gift 3" style="width: 120px; border: none; box-shadow: 0 4px 10px rgba(0,0,0,0.1);"></div>
+        <div id="page5" class="page" style="background-color: #fff0f5; justify-content: center; padding: 40px 20px;">
+            <div style="display: flex; flex-direction: column; gap: 25px; width: 100%; max-width: 300px; align-items: center;">
+                <div class="gift-item" onclick="showContent('cakedu.png', '')" style="cursor: pointer;"><img src="gift1.png" alt="Gift 1" style="width: 120px; border: none; box-shadow: none; background: transparent;"></div>
+                <div class="gift-item" onclick="showContent('flower.png', '')" style="cursor: pointer;"><img src="gift2.png" alt="Gift 2" style="width: 120px; border: none; box-shadow: none; background: transparent;"></div>
+                <div class="gift-item" onclick="showContent('dinner', 'Dinner at Sancreed well cafe')" style="cursor: pointer;"><img src="gift3.png" alt="Gift 3" style="width: 120px; border: none; box-shadow: none; background: transparent;"></div>
             </div>
             <div id="gift-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.95); z-index: 100; flex-direction: column; align-items: center; justify-content: center; padding: 20px;">
-                <img id="modal-img" src="" style="max-width: 80%; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.2);">
+                <img id="modal-img" src="" style="max-width: 80%; border: none; box-shadow: none; background: transparent;">
                 <p id="modal-text" style="margin-top: 20px; font-size: 1.5rem; color: #ff758f; font-weight: bold; text-align: center;"></p>
                 <button onclick="document.getElementById('gift-modal').style.display='none'" style="margin-top: 30px; padding: 10px 20px; border-radius: 20px; border: none; background: #ffccd5; color: #ff4d6d; cursor: pointer;">Close</button>
             </div>
