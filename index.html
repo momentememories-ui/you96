@@ -72,11 +72,11 @@
             </div>
         </div>
 
-        <div id="page4" class="page" style="background-color: #fff0f5; padding: 0; position: relative;">
-            <div id="cake-area" style="position: relative; width: 100%; height: 70%; background-image: url('cake.png'); background-size: contain; background-repeat: no-repeat; background-position: center; cursor: pointer; margin-top: 20px;" onclick="placeCandle(event)"></div>
-            <div style="height: 30%; display: flex; flex-direction: column; align-items: center; justify-content: flex-start;">
-                <button id="blow-btn" class="next-btn" onclick="finishBlowing()" style="display: none; margin-top: 20px; z-index: 20;">Blow the Candles 🎂</button>
-                <button id="gift-btn" class="next-btn" onclick="openGift()" style="display: none; margin-top: 20px; background-color: #4cc9f0;">เปิดกล่องของขวัญกัน</button>
+        <div id="page4" class="page" style="padding: 0; position: relative; background-color: #fff0f5;">
+            <div id="cake-area" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('cake.png'); background-size: cover; background-position: center; cursor: pointer;" onclick="placeCandle(event)"></div>
+            <div style="position: absolute; bottom: 50px; width: 100%; display: flex; flex-direction: column; align-items: center; z-index: 10;">
+                <button id="blow-btn" class="next-btn" onclick="finishBlowing()" style="display: none; background-color: #ff758f;">Blow the Candles 🎂</button>
+                <button id="gift-btn" class="next-btn" onclick="openGift()" style="display: none; background-color: #ff758f;">Open the gift box</button>
             </div>
         </div>
     </div>
@@ -130,7 +130,7 @@
             document.getElementById('blow-btn').style.display = 'none';
             document.getElementById('gift-btn').style.display = 'block';
         }
-        function openGift() { alert("เปิดกล่องของขวัญเรียบร้อยแล้ว!"); }
+        function openGift() { alert("Gift box opened!"); }
         function goToLetter() { navigateTo('page3'); document.querySelector('.phone-container').scrollTop = 0; }
         function goToCakePage() { navigateTo('page4'); document.querySelector('.phone-container').scrollTop = 0; }
     </script>
