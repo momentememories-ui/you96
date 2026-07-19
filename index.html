@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Our Anniversary</title>
+    <title>Happy officail anniversary</title>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Fredoka', sans-serif; -webkit-tap-highlight-color: transparent; }
@@ -19,8 +19,7 @@
         .smoke-puff { position: absolute; width: 40px; height: 40px; background: rgba(200, 200, 200, 0.5); border-radius: 50%; pointer-events: none; animation: smoke 1.5s ease-out forwards; }
         #cake-area { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('cake.png'); background-size: contain; background-repeat: no-repeat; background-position: center; cursor: pointer; }
         #gift-modal { display: none; opacity: 0; visibility: hidden; transition: opacity 0.3s ease-in-out; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.95); z-index: 100; flex-direction: column; align-items: center; justify-content: center; padding: 20px; }
-
-        /* หน้าอื่นๆ (0-4) คงเดิม */
+        
         #page0 { background-image: url('photo1.jpg'); background-size: cover; background-position: center top; position: relative; justify-content: flex-end; padding: 60px 24px 60px 24px; }
         #page0::before, #page1::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(255, 240, 245, 0.15); z-index: 1; }
         .welcome-action { position: relative; z-index: 2; width: 100%; text-align: center; }
@@ -42,7 +41,6 @@
         .img-wrapper-p2 img { width: 100%; height: 100%; object-fit: cover; border-radius: 20px; }
         .horizontal-counter { font-weight: 700; font-size: 2.5rem; display: flex; align-items: center; justify-content: center; gap: 4px; width: 100%; color: #ff758f; text-shadow: 1px 1px 0px #fff, -1px -1px 0px #fff, 1px -1px 0px #fff, -1px 1px 0px #fff, 0px 4px 8px rgba(0,0,0,0.06); margin-bottom: 15px; }
         .time-unit { display: inline-block; }
-        #days-box { color: #ff85a2; } #hours-box { color: #fbc4ab; } #minutes-box { color: #b7e4c7; } #seconds-box { color: #a8dadc; }
         .colon { color: #ffccd5; font-size: 2.2rem; padding: 0 2px; }
         .labels-row { display: flex; justify-content: center; gap: 32px; font-size: 0.8rem; font-weight: 600; color: #ffa6c9; margin-bottom: 30px; }
         #page3 { justify-content: flex-start; padding: 0; background-color: #ffffff; height: auto; min-height: 100%; }
@@ -53,7 +51,6 @@
 </head>
 <body>
     <audio id="bgMusic" loop><source src="song.mp3" type="audio/mpeg"></audio>
-
     <div class="phone-container">
         <div id="page0" class="page active"><div class="welcome-action"><button class="next-btn" onclick="startJourney()">Let's start the journey ❤️</button></div></div>
         <div id="page1" class="page">
@@ -61,7 +58,7 @@
             <div class="keypad"><div class="key" onclick="pressKey('1')">1</div><div class="key" onclick="pressKey('2')">2</div><div class="key" onclick="pressKey('3')">3</div><div class="key" onclick="pressKey('4')">4</div><div class="key" onclick="pressKey('5')">5</div><div class="key" onclick="pressKey('6')">6</div><div class="key" onclick="pressKey('7')">7</div><div class="key" onclick="pressKey('8')">8</div><div class="key" onclick="pressKey('9')">9</div><div></div><div class="key" onclick="pressKey('0')">0</div><div class="key" onclick="clearLast()">&larr;</div></div>
         </div>
         <div id="page2" class="page">
-            <h1 id="counter-title">Countdown to our 6th Anniversary</h1>
+            <h1 id="counter-title">Countdown to our Anniversary</h1>
             <div class="img-wrapper-p2"><img src="photo2.jpg" alt="Our Memory 2" onerror="this.style.display='none';"></div>
             <div class="horizontal-counter"><span class="time-unit" id="days-box">00</span><span class="colon">:</span><span class="time-unit" id="hours-box">00</span><span class="colon">:</span><span class="time-unit" id="minutes-box">00</span><span class="colon">:</span><span class="time-unit" id="seconds-box">00</span></div>
             <div class="labels-row"><span>days</span><span>hours</span><span>mins</span><span>secs</span></div>
@@ -70,7 +67,7 @@
         <div id="page3" class="page">
             <div class="scrollable-letter-wrapper">
                 <img src="photo3.png" alt="My Letter to You" onerror="this.style.display='none';">
-                <div class="letter-footer"><button class="next-btn" onclick="goToCakePage()">Next Page ❤️</button></div>
+                <div class="letter-footer"><button class="next-btn" onclick="goToCakePage()">🎂 Let's Start!</button></div>
             </div>
         </div>
         <div id="page4" class="page" style="padding: 0; position: relative; background-color: #fff0f5;">
@@ -79,7 +76,6 @@
                 <button id="blow-btn" class="next-btn" onclick="finishBlowing()" style="display: none; background-color: #ff758f;">Blow the Candles 🎂</button>
             </div>
         </div>
-        
         <div id="page5" class="page" style="background-color: #fff0f5; justify-content: center; padding: 40px 20px;">
             <div id="gift-grid" style="display: flex; flex-direction: column; gap: 25px; width: 100%; max-width: 300px; align-items: center;">
                 <div class="gift-item" onclick="openGift('cakedu.png', '', 0)" style="cursor: pointer;"><img src="gift1.png" alt="Gift 1" style="width: 120px; border: none; box-shadow: none; background: transparent;"></div>
@@ -93,94 +89,49 @@
                 <button onclick="closeModal()" style="margin-top: 30px; padding: 10px 20px; border-radius: 20px; border: none; background: #ffccd5; color: #ff4d6d; cursor: pointer;">Close</button>
             </div>
         </div>
-
-        <div id="page6" class="page" style="background-color: #fff; padding: 20px;">
-            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
-                <img src="photo1.jpg"><img src="photo2.jpg"><img src="photo3.jpg"><img src="photo4.jpg">
-                <img src="photo5.jpg"><img src="photo6.jpg"><img src="photo7.jpg"><img src="photo8.jpg">
-                <img src="photo9.jpg"><img src="photo10.jpg"><img src="photo11.jpg"><img src="photo12.jpg">
+        <!-- PAGE 6 -->
+        <div id="page6" class="page" style="background-color: #fff0f5; padding: 20px; display: flex; flex-direction: column; align-items: center; overflow-y: auto;">
+            <h2 style="color: #ff4d6d; margin-bottom: 20px; font-size: 1.5rem; text-align: center;">WANIDA & JESSE</h2>
+            <div style="column-count: 2; column-gap: 10px; width: 100%;">
+                <div onclick="openModal('photo5.jpg', '1. Our first photo together In Thailand')" style="margin-bottom: 10px; break-inside: avoid; cursor: pointer;"><img src="photo5.jpg" style="width: 100%; border-radius: 10px; border: none;"></div>
+                <div onclick="openModal('photo6.jpg', '2. Our 2nd met in Singapore')" style="margin-bottom: 10px; break-inside: avoid; cursor: pointer;"><img src="photo6.jpg" style="width: 100%; border-radius: 10px; border: none;"></div>
+                <div onclick="openModal('photo7.jpg', '3. Our 3rd meeting in my hometown')" style="margin-bottom: 10px; break-inside: avoid; cursor: pointer;"><img src="photo7.jpg" style="width: 100%; border-radius: 10px; border: none;"></div>
+                <div onclick="openModal('photo8.jpg', '4. Finally, moving together')" style="margin-bottom: 10px; break-inside: avoid; cursor: pointer;"><img src="photo8.jpg" style="width: 100%; border-radius: 10px; border: none;"></div>
+                <div onclick="openModal('photo9.jpg', '5. Our first time celebrating Christmas together')" style="margin-bottom: 10px; break-inside: avoid; cursor: pointer;"><img src="photo9.jpg" style="width: 100%; border-radius: 10px; border: none;"></div>
+                <div onclick="openModal('photo10.jpg', '6. First time meeting my mom and my best friend')" style="margin-bottom: 10px; break-inside: avoid; cursor: pointer;"><img src="photo10.jpg" style="width: 100%; border-radius: 10px; border: none;"></div>
+                <div onclick="openModal('photo11.jpg', '7. First time having hair cut together')" style="margin-bottom: 10px; break-inside: avoid; cursor: pointer;"><img src="photo11.jpg" style="width: 100%; border-radius: 10px; border: none;"></div>
+                <div onclick="openModal('photo12.jpg', '8. Our first Valentine\'s together')" style="margin-bottom: 10px; break-inside: avoid; cursor: pointer;"><img src="photo12.jpg" style="width: 100%; border-radius: 10px; border: none;"></div>
+                <div onclick="openModal('photo13.jpg', '9. Our first trip to Taiwan')" style="margin-bottom: 10px; break-inside: avoid; cursor: pointer;"><img src="photo13.jpg" style="width: 100%; border-radius: 10px; border: none;"></div>
+                <div onclick="openModal('photo14.jpg', '10. 2nd time met cutie girl Avi.')" style="margin-bottom: 10px; break-inside: avoid; cursor: pointer;"><img src="photo14.jpg" style="width: 100%; border-radius: 10px; border: none;"></div>
+                <div onclick="openModal('photo15.jpg', '11. Last year we first met, and this year it is Wat Arun for cerebrate Monthsary')" style="margin-bottom: 10px; break-inside: avoid; cursor: pointer;"><img src="photo15.jpg" style="width: 100%; border-radius: 10px; border: none;"></div>
+                <div onclick="openModal('photo16.jpg', '12. Take photos of the photo booth countless times.')" style="margin-bottom: 10px; break-inside: avoid; cursor: pointer;"><img src="photo16.jpg" style="width: 100%; border-radius: 10px; border: none;"></div>
+            </div>
+            <div id="photoModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:999; justify-content:center; align-items:center; flex-direction:column; padding:20px;" onclick="closeModal()">
+                <img id="modalFullImg" src="" style="max-width:100%; max-height:70%; border-radius:15px; border:none;">
+                <p id="modalCaption" style="color:#fff; margin-top:20px; font-size:1.2rem; text-align:center; font-weight:bold;"></p>
             </div>
         </div>
     </div>
-
     <script>
         const CORRECT_PASSCODE = "270725";
         const TARGET_DATE = new Date("2026-07-27T00:00:00").getTime(); 
         let openedGifts = [false, false, false];
-        
         function startJourney() { document.getElementById('bgMusic').play(); navigateTo('page1'); }
         let currentInput = "", candleCount = 0;
         const dots = document.querySelectorAll('.dot'), page1 = document.getElementById('page1'), MAX_CANDLES = 6;
-        
         function pressKey(num) { if (currentInput.length < 6) { currentInput += num; updateDots(); if (currentInput.length === 6) setTimeout(checkPasscode, 200); } }
         function clearLast() { if (currentInput.length > 0) { currentInput = currentInput.slice(0, -1); updateDots(); } }
         function updateDots() { dots.forEach((dot, index) => { if (index < currentInput.length) dot.classList.add('filled'); else dot.classList.remove('filled'); }); }
         function checkPasscode() { if (currentInput === CORRECT_PASSCODE) { navigateTo('page2'); startCountdown(); } else { page1.classList.add('shake'); if (navigator.vibrate) navigator.vibrate(200); setTimeout(() => { page1.classList.remove('shake'); currentInput = ""; updateDots(); }, 400); } }
         function navigateTo(p) { document.querySelectorAll('.page').forEach(pg => pg.classList.remove('active')); document.getElementById(p).classList.add('active'); }
-        
-        function startCountdown() {
-            function updateTimer() {
-                const diff = TARGET_DATE - new Date().getTime();
-                if (diff <= 0) return;
-                document.getElementById('days-box').innerText = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
-                document.getElementById('hours-box').innerText = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
-                document.getElementById('minutes-box').innerText = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
-                document.getElementById('seconds-box').innerText = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
-            }
-            setInterval(updateTimer, 1000); updateTimer();
-        }
-        
-        function placeCandle(e) {
-            if (candleCount < MAX_CANDLES) {
-                const area = document.getElementById('cake-area'), c = document.createElement('img');
-                c.src = 'candle.png'; c.className = 'my-candle'; 
-                c.style.position = 'absolute'; c.style.width = '60px'; c.style.border = 'none'; c.style.boxShadow = 'none';
-                const rect = area.getBoundingClientRect();
-                c.style.left = (e.clientX - rect.left - 30) + 'px'; c.style.top = (e.clientY - rect.top - 50) + 'px';
-                c.style.pointerEvents = 'none'; area.appendChild(c); candleCount++;
-                if (candleCount === MAX_CANDLES) document.getElementById('blow-btn').style.display = 'block';
-            }
-        }
-        
-        function finishBlowing() { 
-            const candles = document.querySelectorAll('.my-candle');
-            candles.forEach(c => {
-                c.src = 'candle-off.png';
-                const smoke = document.createElement('div');
-                smoke.className = 'smoke-puff';
-                smoke.style.position = 'absolute';
-                smoke.style.left = (parseInt(c.style.left) + 15) + 'px';
-                smoke.style.top = c.style.top;
-                document.getElementById('cake-area').appendChild(smoke);
-                setTimeout(() => smoke.remove(), 1500);
-            });
-            document.getElementById('blow-btn').style.display = 'none';
-            setTimeout(() => navigateTo('page5'), 1000);
-        }
-        
-        function openGift(src, text, index) {
-            const modal = document.getElementById('gift-modal'), img = document.getElementById('modal-img'), txt = document.getElementById('modal-text');
-            openedGifts[index] = true;
-            if(src === 'dinner') { img.style.display = 'none'; txt.innerText = text; } 
-            else { img.src = src; img.style.display = 'block'; txt.innerText = text; }
-            modal.style.display = 'flex';
-            modal.style.visibility = 'visible';
-            setTimeout(() => modal.style.opacity = '1', 10);
-            
-            // เช็คเงื่อนไขว่าเปิดครบ 3 กล่องหรือยัง
-            if (openedGifts.every(val => val === true)) {
-                document.getElementById('memories-btn').style.display = 'block';
-            }
-        }
-        
-        function closeModal() {
-            const modal = document.getElementById('gift-modal');
-            modal.style.opacity = '0';
-            setTimeout(() => { modal.style.display = 'none'; modal.style.visibility = 'hidden'; }, 300);
-        }
-        
+        function startCountdown() { function updateTimer() { const diff = TARGET_DATE - new Date().getTime(); if (diff <= 0) return; document.getElementById('days-box').innerText = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0'); document.getElementById('hours-box').innerText = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0'); document.getElementById('minutes-box').innerText = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0'); document.getElementById('seconds-box').innerText = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0'); } setInterval(updateTimer, 1000); updateTimer(); }
+        function placeCandle(e) { if (candleCount < MAX_CANDLES) { const area = document.getElementById('cake-area'), c = document.createElement('img'); c.src = 'candle.png'; c.className = 'my-candle'; c.style.position = 'absolute'; c.style.width = '60px'; c.style.border = 'none'; c.style.boxShadow = 'none'; const rect = area.getBoundingClientRect(); c.style.left = (e.clientX - rect.left - 30) + 'px'; c.style.top = (e.clientY - rect.top - 50) + 'px'; c.style.pointerEvents = 'none'; area.appendChild(c); candleCount++; if (candleCount === MAX_CANDLES) document.getElementById('blow-btn').style.display = 'block'; } }
+        function finishBlowing() { const candles = document.querySelectorAll('.my-candle'); candles.forEach(c => { c.src = 'candle-off.png'; const smoke = document.createElement('div'); smoke.className = 'smoke-puff'; smoke.style.position = 'absolute'; smoke.style.left = (parseInt(c.style.left) + 15) + 'px'; smoke.style.top = c.style.top; document.getElementById('cake-area').appendChild(smoke); setTimeout(() => smoke.remove(), 1500); }); document.getElementById('blow-btn').style.display = 'none'; setTimeout(() => navigateTo('page5'), 1000); }
+        function openGift(src, text, index) { const modal = document.getElementById('gift-modal'), img = document.getElementById('modal-img'), txt = document.getElementById('modal-text'); openedGifts[index] = true; if(src === 'dinner') { img.style.display = 'none'; txt.innerText = text; } else { img.src = src; img.style.display = 'block'; txt.innerText = text; } modal.style.display = 'flex'; modal.style.visibility = 'visible'; setTimeout(() => modal.style.opacity = '1', 10); if (openedGifts.every(val => val === true)) { document.getElementById('memories-btn').style.display = 'block'; } }
+        function closeModal() { document.getElementById('gift-modal').style.opacity = '0'; setTimeout(() => { document.getElementById('gift-modal').style.display = 'none'; document.getElementById('gift-modal').style.visibility = 'hidden'; }, 300); document.getElementById('photoModal').style.display = 'none'; }
         function goToLetter() { navigateTo('page3'); document.querySelector('.phone-container').scrollTop = 0; }
         function goToCakePage() { navigateTo('page4'); document.querySelector('.phone-container').scrollTop = 0; }
+        function openModal(src, caption) { document.getElementById('modalFullImg').src = src; document.getElementById('modalCaption').innerText = caption; document.getElementById('photoModal').style.display = 'flex'; }
     </script>
 </body>
 </html>
