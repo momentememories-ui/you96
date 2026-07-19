@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Our Anniversary</title>
-    <!-- นำเข้าฟอนต์อ้วนกลมน่ารักสำหรับหน้านับเวลา -->
+    <!-- นำเข้าฟอนต์อ้วนกลมน่ารัก -->
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -206,7 +206,7 @@
             animation: shake 0.3s ease-in-out;
         }
 
-        /* PAGE 2: Counter ปรับเป็นแนวนอนบรรทัดเดียว */
+        /* PAGE 2: Counter ปรับปรุงฟอนต์อ้วนทั้งหมด */
         #page2 {
             justify-content: center;
             background-color: #ffffff;
@@ -249,7 +249,6 @@
             gap: 4px;
             width: 100%;
             color: #ff758f;
-            /* ขอบและเงาแบบในเรฟ */
             text-shadow: 1px 1px 0px #fff, -1px -1px 0px #fff, 1px -1px 0px #fff, -1px 1px 0px #fff, 0px 4px 8px rgba(0,0,0,0.06);
             margin-bottom: 15px;
         }
@@ -265,7 +264,7 @@
         #seconds-box { color: #a8dadc; }
         .colon { color: #ffccd5; font-size: 2.2rem; padding: 0 2px; }
 
-        /* ป้ายกำกับเล็กๆ บอกหน่วยด้านล่าง */
+        /* ป้ายกำกับเล็กๆ ด้านล่าง เปลี่ยนเป็นฟอนต์อ้วน Fredoka */
         .labels-row {
             display: flex;
             justify-content: center;
@@ -355,9 +354,10 @@
             </div>
         </div>
 
-        <!-- PAGE 2: COUNTER (ปรับเป็นนับถอยหลัง แนวนอนบรรทัดเดียว วัน:ชม:นาที:วิ) -->
+        <!-- PAGE 2: COUNTER (ปรับข้อความให้เปลี่ยนอัตโนมัติเมื่อครบกำหนด) -->
         <div id="page2" class="page">
-            <h1>Countdown to our 1st Anniversary</h1>
+            <!-- เพิ่ม id="counter-title" เพื่อควบคุมการเปลี่ยนข้อความทาง JavaScript -->
+            <h1 id="counter-title">Countdown to our 1st Anniversary</h1>
             
             <div class="img-wrapper-p2">
                 <img src="photo2.jpg" alt="Our Memory 2" onerror="this.style.display='none';">
@@ -374,7 +374,7 @@
                 <span class="time-unit" id="seconds-box">00</span>
             </div>
 
-            <!-- คำอธิบายหน่วยเวลาด้านล่างตัวเลข -->
+            <!-- คำอธิบายหน่วยเวลาด้านล่างตัวเลขฟอนต์อ้วนกลม -->
             <div class="labels-row">
                 <span>days</span>
                 <span>hours</span>
@@ -456,19 +456,28 @@
             document.getElementById(pageId).classList.add('active');
         }
 
-        // --- COUNTDOWN SYSTEM (วัน : ชั่วโมง : นาที : วินาที) ---
+        // --- COUNTDOWN SYSTEM ---
         function startCountdown() {
+            const titleElement = document.getElementById('counter-title');
+
             function updateTimer() {
                 const now = new Date().getTime();
                 const difference = TARGET_DATE - now;
 
+                // เมื่อการนับถอยหลังสิ้นสุดลงหรือเลยกำหนดแล้ว
                 if (difference <= 0) {
                     document.getElementById('days-box').innerText = "00";
                     document.getElementById('hours-box').innerText = "00";
                     document.getElementById('minutes-box').innerText = "00";
                     document.getElementById('seconds-box').innerText = "00";
+                    
+                    // เปลี่ยนหัวเรื่องเป็นข้อความฉลองวันครบรอบ
+                    titleElement.innerText = "Happy Anniversary 1 Year";
                     return;
                 }
+
+                // เมื่อยังอยู่ในช่วงนับถอยหลัง
+                titleElement.innerText = "Countdown to our 1st Anniversary";
 
                 // คำนวณหา วัน ชั่วโมง นาที วินาที จากเวลาที่เหลือทั้งหมด
                 const days = Math.floor(difference / (1000 * 60 * 60 * 24));
