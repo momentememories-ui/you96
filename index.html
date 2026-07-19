@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Happy officail 6th anniversary</title>
+    <title>Happy officail 1st anniversary</title>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Fredoka', sans-serif; -webkit-tap-highlight-color: transparent; }
@@ -25,6 +25,7 @@
         .welcome-action { position: relative; z-index: 2; width: 100%; text-align: center; }
         #page1 { justify-content: space-between; padding: 60px 24px 20px 24px; background-image: url('photo1.jpg'); background-size: cover; background-position: center top; position: relative; }
         .passcode-header, .keypad { position: relative; z-index: 2; }
+        .passcode-header { text-align: center; width: 100%; }
         .passcode-header h2 { font-size: 1.6rem; color: #ffffff; margin-bottom: 15px; font-weight: 600; text-shadow: 0 2px 8px rgba(255, 77, 109, 0.6); }
         .dots-container { display: flex; gap: 15px; justify-content: center; margin-top: 5px; background-color: #ffffff; padding: 12px 25px; border-radius: 20px; display: inline-flex; box-shadow: 0 4px 10px rgba(255, 77, 109, 0.15); }
         .dot { width: 12px; height: 12px; border: 2px solid #ffccd5; border-radius: 50%; transition: background 0.1s; }
@@ -77,6 +78,7 @@
                 <button id="blow-btn" class="next-btn" onclick="finishBlowing()" style="display: none; background-color: #ff758f;">Blow the Candles 🎂</button>
             </div>
         </div>
+        
         <div id="page5" class="page" style="background-color: #fff0f5; justify-content: center; padding: 40px 20px;">
             <div id="gift-grid" style="display: flex; flex-direction: column; gap: 25px; width: 100%; max-width: 300px; align-items: center;">
                 <div class="gift-item" onclick="openGift('cakedu.png', '', 0)" style="cursor: pointer;"><img src="gift1.png" alt="Gift 1" style="width: 120px; border: none; box-shadow: none; background: transparent;"></div>
@@ -91,37 +93,27 @@
             </div>
         </div>
 
-        <div id="page6" class="page" style="background-color: #fff0f5; padding: 20px; overflow-y: auto;">
-            <h2 style="text-align: center; color: #ff4d6d; margin-bottom: 20px; font-family: 'Fredoka';">WANIDA & JESSE</h2>
-            <style>
-                .gallery-grid { column-count: 2; column-gap: 10px; }
-                .gallery-item { break-inside: avoid; margin-bottom: 10px; cursor: pointer; transition: transform 0.2s; }
-                .gallery-item:active { transform: scale(0.98); }
-                .gallery-item img { width: 100%; border-radius: 12px; display: block; border: 2px solid #fff; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-            </style>
-            <div class="gallery-grid">
-                <img src="photo1.jpg">
-                <img src="photo2.jpg">
-                <img src="photo3.jpg">
-                <img src="photo4.jpg">
-                <img src="photo5.jpg">
-                <img src="photo6.jpg">
-                <img src="photo7.jpg">
-                <img src="photo8.jpg">
-                <img src="photo9.jpg">
-                <img src="photo10.jpg">
-                <div class="gallery-item" onclick="openFullView('photo11.jpg', 'Our memories')"><img src="photo11.jpg"></div>
-                <div class="gallery-item" onclick="openFullView('photo12.jpg', 'Our memories')"><img src="photo12.jpg"></div>
-                <div class="gallery-item" onclick="openFullView('photo13.jpg', 'Our memories')"><img src="photo13.jpg"></div>
-                <div class="gallery-item" onclick="openFullView('photo14.jpg', 'Our memories')"><img src="photo14.jpg"></div>
-                <div class="gallery-item" onclick="openFullView('photo15.jpg', 'Our memories')"><img src="photo15.jpg"></div>
-                <div class="gallery-item" onclick="openFullView('photo16.jpg', 'Our memories')"><img src="photo16.jpg"></div>
+        <div id="page6" class="page" style="background-color: #fff; padding: 20px; display: flex; flex-direction: column; align-items: center;">
+            <h2 style="color: #ff4d6d; margin-bottom: 20px; font-size: 1.5rem;">WANIDA & JESSE</h2>
+            <div id="memory-grid" style="columns: 2; column-gap: 10px; width: 100%;">
+                <div onclick="openMemory('photo5.jpg', '1. Our first photo together In Thailand')" style="break-inside: avoid; margin-bottom: 10px; cursor: pointer;"><img src="photo5.jpg" style="width: 100%; border-radius: 10px;"></div>
+                <div onclick="openMemory('photo6.jpg', '2. Our 2nd met in Singapore')" style="break-inside: avoid; margin-bottom: 10px; cursor: pointer;"><img src="photo6.jpg" style="width: 100%; border-radius: 10px;"></div>
+                <div onclick="openMemory('photo7.jpg', '3. Our 3rd meeting in my hometown')" style="break-inside: avoid; margin-bottom: 10px; cursor: pointer;"><img src="photo7.jpg" style="width: 100%; border-radius: 10px;"></div>
+                <div onclick="openMemory('photo8.jpg', '4. Finally, moving together')" style="break-inside: avoid; margin-bottom: 10px; cursor: pointer;"><img src="photo8.jpg" style="width: 100%; border-radius: 10px;"></div>
+                <div onclick="openMemory('photo9.jpg', '5. Our first time celebrating Christmas together')" style="break-inside: avoid; margin-bottom: 10px; cursor: pointer;"><img src="photo9.jpg" style="width: 100%; border-radius: 10px;"></div>
+                <div onclick="openMemory('photo10.jpg', '6. First time meeting my mom and my best friend')" style="break-inside: avoid; margin-bottom: 10px; cursor: pointer;"><img src="photo10.jpg" style="width: 100%; border-radius: 10px;"></div>
+                <div onclick="openMemory('photo11.jpg', '7. First time having hair cut together')" style="break-inside: avoid; margin-bottom: 10px; cursor: pointer;"><img src="photo11.jpg" style="width: 100%; border-radius: 10px;"></div>
+                <div onclick="openMemory('photo12.jpg', '8. Our first Valentine\'s together')" style="break-inside: avoid; margin-bottom: 10px; cursor: pointer;"><img src="photo12.jpg" style="width: 100%; border-radius: 10px;"></div>
+                <div onclick="openMemory('photo13.jpg', '9. Our first trip to Taiwan')" style="break-inside: avoid; margin-bottom: 10px; cursor: pointer;"><img src="photo13.jpg" style="width: 100%; border-radius: 10px;"></div>
+                <div onclick="openMemory('photo14.jpg', '10. 2nd time met cutie girl Avi.')" style="break-inside: avoid; margin-bottom: 10px; cursor: pointer;"><img src="photo14.jpg" style="width: 100%; border-radius: 10px;"></div>
+                <div onclick="openMemory('photo15.jpg', '11. Last year we first met, and this year it is Wat Arun for cerebrate Monthsary')" style="break-inside: avoid; margin-bottom: 10px; cursor: pointer;"><img src="photo15.jpg" style="width: 100%; border-radius: 10px;"></div>
+                <div onclick="openMemory('photo16.jpg', '12. Take photos of the photo booth countless times.')" style="break-inside: avoid; margin-bottom: 10px; cursor: pointer;"><img src="photo16.jpg" style="width: 100%; border-radius: 10px;"></div>
             </div>
-        </div>
-        <div id="view-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.95); z-index:999; flex-direction:column; align-items:center; justify-content:center; padding:20px;">
-            <img id="view-img" style="max-width:90%; max-height:60%; border-radius:15px; box-shadow:0 10px 20px rgba(0,0,0,0.2);">
-            <p id="view-text" style="margin-top:20px; font-size:1.2rem; color:#ff4d6d; text-align:center; padding: 0 10px;"></p>
-            <button onclick="closeFullView()" style="margin-top:30px; padding:10px 30px; border-radius:20px; border:none; background:#ff758f; color:white; cursor:pointer;">Close</button>
+            <div id="memory-modal" style="display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(255,255,255,0.98); z-index: 200; flex-direction: column; align-items: center; justify-content: center; padding: 20px;">
+                <img id="modal-mem-img" src="" style="max-width: 90%; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);">
+                <p id="modal-mem-text" style="margin-top: 20px; font-size: 1.2rem; color: #ff4d6d; font-weight: 600; text-align: center; padding: 0 10px;"></p>
+                <button onclick="closeMemory()" style="margin-top: 30px; padding: 10px 30px; border-radius: 30px; border: none; background: #ff758f; color: white; font-weight: bold; cursor: pointer;">Close</button>
+            </div>
         </div>
     </div>
 
@@ -196,14 +188,14 @@
             modal.style.opacity = '0';
             setTimeout(() => { modal.style.display = 'none'; modal.style.visibility = 'hidden'; }, 300);
         }
-
-        function openFullView(src, text) {
-            const modal = document.getElementById('view-modal');
-            document.getElementById('view-img').src = src;
-            document.getElementById('view-text').innerText = text;
+        
+        function openMemory(src, text) {
+            const modal = document.getElementById('memory-modal');
+            document.getElementById('modal-mem-img').src = src;
+            document.getElementById('modal-mem-text').innerText = text;
             modal.style.display = 'flex';
         }
-        function closeFullView() { document.getElementById('view-modal').style.display = 'none'; }
+        function closeMemory() { document.getElementById('memory-modal').style.display = 'none'; }
         
         function goToLetter() { navigateTo('page3'); document.querySelector('.phone-container').scrollTop = 0; }
         function goToCakePage() { navigateTo('page4'); document.querySelector('.phone-container').scrollTop = 0; }
