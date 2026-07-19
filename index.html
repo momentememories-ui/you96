@@ -15,20 +15,9 @@
         img { max-width: 100%; object-fit: cover; border-radius: 16px; box-shadow: 0 8px 20px rgba(255, 77, 109, 0.1); border: 3px solid #fff; }
         button.next-btn { background-color: #ff758f; color: white; border: none; padding: 14px 28px; font-size: 1.1rem; font-weight: 600; border-radius: 30px; cursor: pointer; margin-top: 30px; box-shadow: 0 4px 10px rgba(255, 117, 143, 0.3); transition: transform 0.2s; }
         button.next-btn:active { transform: scale(0.95); }
-        
         @keyframes smoke { 0% { opacity: 0.8; transform: translateY(0) scale(1); } 100% { opacity: 0; transform: translateY(-30px) scale(1.5); } }
         .smoke-puff { position: absolute; width: 40px; height: 40px; background: rgba(200, 200, 200, 0.5); border-radius: 50%; pointer-events: none; animation: smoke 1.5s ease-out forwards; }
-        
-        /* สไตล์หน้าเค้ก */
-        #cake-area { 
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
-            background-image: url('cake.png'); 
-            background-size: contain; /* ปรับให้รูปเค้กพอดีกรอบ ไม่โดนตัด */
-            background-repeat: no-repeat; 
-            background-position: center; 
-            cursor: pointer; 
-        }
-
+        #cake-area { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('cake.png'); background-size: contain; background-repeat: no-repeat; background-position: center; cursor: pointer; }
         #page0 { background-image: url('photo1.jpg'); background-size: cover; background-position: center top; position: relative; justify-content: flex-end; padding: 60px 24px 60px 24px; }
         #page0::before, #page1::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(255, 240, 245, 0.15); z-index: 1; }
         .welcome-action { position: relative; z-index: 2; width: 100%; text-align: center; }
@@ -81,19 +70,26 @@
                 <div class="letter-footer"><button class="next-btn" onclick="goToCakePage()">Next Page ❤️</button></div>
             </div>
         </div>
-
         <div id="page4" class="page" style="padding: 0; position: relative; background-color: #fff0f5;">
             <div id="cake-area" onclick="placeCandle(event)"></div>
             <div style="position: absolute; bottom: 50px; width: 100%; display: flex; flex-direction: column; align-items: center; z-index: 10;">
                 <button id="blow-btn" class="next-btn" onclick="finishBlowing()" style="display: none; background-color: #ff758f;">Blow the Candles 🎂</button>
-                <button id="gift-btn" class="next-btn" onclick="navigateTo('page5')" style="display: none; background-color: #ff758f;">Open the gift box</button>
             </div>
         </div>
-
-        <div id="page5" class="page" style="background-color: #fff;">
-            <h1>🎁 Surprise!</h1>
-            <img src="gift.jpg" alt="Gift" style="margin-top:20px; border:none; box-shadow:none;">
-            <p style="margin-top:20px; font-size:1.2rem;">Happy Anniversary, my love!</p>
+        
+        <!-- หน้าที่ 5: กล่องของขวัญ -->
+        <div id="page5" class="page" style="background-color: #fff0f5; justify-content: flex-start; padding: 40px 20px;">
+            <h2 style="color: #ff758f; margin-bottom: 30px;">Choose Your Gift</h2>
+            <div style="display: flex; flex-direction: column; gap: 25px; width: 100%; max-width: 300px;">
+                <div class="gift-item" onclick="showContent('cakedu.png', 'เค้กทุเรียนแสนอร่อย!')" style="cursor: pointer; text-align: center;"><img src="gift1.png" alt="Gift 1" style="width: 120px; border: none; box-shadow: 0 4px 10px rgba(0,0,0,0.1);"></div>
+                <div class="gift-item" onclick="showContent('flower.png', 'ช่อดอกไม้แทนใจ')" style="cursor: pointer; text-align: center;"><img src="gift2.png" alt="Gift 2" style="width: 120px; border: none; box-shadow: 0 4px 10px rgba(0,0,0,0.1);"></div>
+                <div class="gift-item" onclick="showContent('dinner', 'Dinner at Sancreed well cafe')" style="cursor: pointer; text-align: center;"><img src="gift3.png" alt="Gift 3" style="width: 120px; border: none; box-shadow: 0 4px 10px rgba(0,0,0,0.1);"></div>
+            </div>
+            <div id="gift-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.95); z-index: 100; flex-direction: column; align-items: center; justify-content: center; padding: 20px;">
+                <img id="modal-img" src="" style="max-width: 80%; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.2);">
+                <p id="modal-text" style="margin-top: 20px; font-size: 1.5rem; color: #ff758f; font-weight: bold; text-align: center;"></p>
+                <button onclick="document.getElementById('gift-modal').style.display='none'" style="margin-top: 30px; padding: 10px 20px; border-radius: 20px; border: none; background: #ffccd5; color: #ff4d6d; cursor: pointer;">Close</button>
+            </div>
         </div>
     </div>
 
@@ -103,7 +99,6 @@
         function startJourney() { document.getElementById('bgMusic').play(); navigateTo('page1'); }
         let currentInput = "", candleCount = 0;
         const dots = document.querySelectorAll('.dot'), page1 = document.getElementById('page1'), MAX_CANDLES = 6;
-
         function pressKey(num) { if (currentInput.length < 6) { currentInput += num; updateDots(); if (currentInput.length === 6) setTimeout(checkPasscode, 200); } }
         function clearLast() { if (currentInput.length > 0) { currentInput = currentInput.slice(0, -1); updateDots(); } }
         function updateDots() { dots.forEach((dot, index) => { if (index < currentInput.length) dot.classList.add('filled'); else dot.classList.remove('filled'); }); }
@@ -144,7 +139,13 @@
                 setTimeout(() => smoke.remove(), 1500);
             });
             document.getElementById('blow-btn').style.display = 'none';
-            document.getElementById('gift-btn').style.display = 'block';
+            setTimeout(() => navigateTo('page5'), 1000);
+        }
+        function showContent(src, text) {
+            const modal = document.getElementById('gift-modal'), img = document.getElementById('modal-img'), txt = document.getElementById('modal-text');
+            if(src === 'dinner') { img.style.display = 'none'; txt.innerText = text; } 
+            else { img.src = src; img.style.display = 'block'; txt.innerText = text; }
+            modal.style.display = 'flex';
         }
         function goToLetter() { navigateTo('page3'); document.querySelector('.phone-container').scrollTop = 0; }
         function goToCakePage() { navigateTo('page4'); document.querySelector('.phone-container').scrollTop = 0; }
