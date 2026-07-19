@@ -20,7 +20,6 @@
         #cake-area { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('cake.png'); background-size: contain; background-repeat: no-repeat; background-position: center; cursor: pointer; }
         #gift-modal { display: none; opacity: 0; visibility: hidden; transition: opacity 0.3s ease-in-out; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.95); z-index: 100; flex-direction: column; align-items: center; justify-content: center; padding: 20px; }
 
-        /* หน้าอื่นๆ (0-4) คงเดิม */
         #page0 { background-image: url('photo1.jpg'); background-size: cover; background-position: center top; position: relative; justify-content: flex-end; padding: 60px 24px 60px 24px; }
         #page0::before, #page1::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(255, 240, 245, 0.15); z-index: 1; }
         .welcome-action { position: relative; z-index: 2; width: 100%; text-align: center; }
@@ -61,7 +60,7 @@
             <div class="keypad"><div class="key" onclick="pressKey('1')">1</div><div class="key" onclick="pressKey('2')">2</div><div class="key" onclick="pressKey('3')">3</div><div class="key" onclick="pressKey('4')">4</div><div class="key" onclick="pressKey('5')">5</div><div class="key" onclick="pressKey('6')">6</div><div class="key" onclick="pressKey('7')">7</div><div class="key" onclick="pressKey('8')">8</div><div class="key" onclick="pressKey('9')">9</div><div></div><div class="key" onclick="pressKey('0')">0</div><div class="key" onclick="clearLast()">&larr;</div></div>
         </div>
         <div id="page2" class="page">
-            <h1 id="counter-title">Countdown to our 6th Anniversary</h1>
+            <h1 id="counter-title">Countdown to our 1th Anniversary</h1>
             <div class="img-wrapper-p2"><img src="photo2.jpg" alt="Our Memory 2" onerror="this.style.display='none';"></div>
             <div class="horizontal-counter"><span class="time-unit" id="days-box">00</span><span class="colon">:</span><span class="time-unit" id="hours-box">00</span><span class="colon">:</span><span class="time-unit" id="minutes-box">00</span><span class="colon">:</span><span class="time-unit" id="seconds-box">00</span></div>
             <div class="labels-row"><span>days</span><span>hours</span><span>mins</span><span>secs</span></div>
@@ -79,7 +78,6 @@
                 <button id="blow-btn" class="next-btn" onclick="finishBlowing()" style="display: none; background-color: #ff758f;">Blow the Candles 🎂</button>
             </div>
         </div>
-        
         <div id="page5" class="page" style="background-color: #fff0f5; justify-content: center; padding: 40px 20px;">
             <div id="gift-grid" style="display: flex; flex-direction: column; gap: 25px; width: 100%; max-width: 300px; align-items: center;">
                 <div class="gift-item" onclick="openGift('cakedu.png', '', 0)" style="cursor: pointer;"><img src="gift1.png" alt="Gift 1" style="width: 120px; border: none; box-shadow: none; background: transparent;"></div>
@@ -93,9 +91,8 @@
                 <button onclick="closeModal()" style="margin-top: 30px; padding: 10px 20px; border-radius: 20px; border: none; background: #ffccd5; color: #ff4d6d; cursor: pointer;">Close</button>
             </div>
         </div>
-
-        <!-- หน้า 6 ที่แก้ไขใหม่ -->
-        <div id="page6" class="page" style="background-color: #fff; padding: 20px; display: none;">
+        <!-- Page 6 -->
+        <div id="page6" class="page" style="background-color: #fff; padding: 20px;">
             <h2 style="text-align: center; color: #ff758f; margin-bottom: 20px; font-weight: 700;">WANIDA & JESSE</h2>
             <div style="column-count: 2; column-gap: 10px;">
                 <script>
@@ -195,8 +192,7 @@
             modal.style.opacity = '0';
             setTimeout(() => { modal.style.display = 'none'; modal.style.visibility = 'hidden'; }, 300);
         }
-
-        // ฟังก์ชันสำหรับหน้า 6
+        
         function openModal6(src, text) {
             const modal = document.getElementById('modal6');
             document.getElementById('img6').src = src;
