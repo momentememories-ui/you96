@@ -274,30 +274,27 @@
             margin-bottom: 30px;
         }
 
-        /* PAGE 3: Letter - ปรับปรุงแสดงผลรูปภาพ photo3.png ให้พอดีหน้าจอ */
+        /* PAGE 3: Letter - ปรับปรุงให้ขยายตามความยาวรูปภาพ เลื่อนหน้าจอลงล่างได้ และพื้นหลังสีขาว */
         #page3 {
-            justify-content: center;
-            padding: 20px;
-            background-color: #fff0f5;
+            justify-content: flex-start; /* เรียงจากบนลงล่างเพื่อให้เลื่อนได้แบบธรรมชาติ */
+            padding: 0; /* เอา padding ออกเพื่อให้รูปภาพชิดขอบซ้ายขวาพอดีความกว้างเดิม */
+            background-color: #ffffff; /* เปลี่ยนพื้นหลังเป็นสีขาวล้วน */
+            height: auto; /* ปล่อยให้ความสูงยืดตามรูปภาพ */
+            min-height: 100%;
         }
 
-        /* กล่องครอบรูปจดหมายเพื่อคุมสัดส่วนให้สวยงาม ไม่ยาวหรือล้นเกินไป */
-        .letter-img-wrapper {
+        /* ปรับแต่งการแสดงผลรูปภาพ photo3.png ให้คงความกว้างเดิมและปล่อยยาวลงไปข้างล่าง */
+        .scrollable-letter-wrapper {
             width: 100%;
-            max-height: 85vh; /* จำกัดความสูงไม่ให้เกิน 85% ของหน้าจอ */
-            display: flex;
-            justify-content: center;
-            align-items: center;
         }
 
-        .letter-img-wrapper img {
+        .scrollable-letter-wrapper img {
             width: 100%;
-            height: auto;
-            max-height: 85vh;
-            object-fit: contain; /* ปรับรูปภาพให้พอดีกล่องโดยสัดส่วนไม่เพี้ยน */
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(255, 77, 109, 0.15);
-            border: none; /* เอาขอบขาวของแท็ก img ปกติออก */
+            height: auto; /* ปล่อยให้ความสูงยืดตามสัดส่วนจริงของรูปภาพยาว */
+            display: block;
+            border-radius: 0; /* เอา border-radius ออกเพื่อให้รูปยาวต่อเนียนๆ */
+            box-shadow: none; 
+            border: none;
         }
     </style>
 </head>
@@ -372,9 +369,9 @@
             <button class="next-btn" onclick="goToLetter()">Click to read my letter</button>
         </div>
 
-        <!-- PAGE 3: LETTER (แสดงผลรูปภาพ photo3.png พอดีสัดส่วนหน้าจอ) -->
+        <!-- PAGE 3: LETTER (ปรับปรุงให้คงความกว้าง เลื่อนแนวตั้งได้ และพื้นหลังขาว) -->
         <div id="page3" class="page">
-            <div class="letter-img-wrapper">
+            <div class="scrollable-letter-wrapper">
                 <img src="photo3.png" alt="My Letter to You" onerror="this.style.display='none';">
             </div>
         </div>
@@ -480,6 +477,8 @@
 
         function goToLetter() {
             navigateTo('page3');
+            // รีเซ็ตการเลื่อนของ container ให้ขึ้นไปด้านบนสุดเมื่อเปิดมาหน้าจดหมาย
+            document.querySelector('.phone-container').scrollTop = 0;
         }
     </script>
 </body>
