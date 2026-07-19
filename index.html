@@ -274,27 +274,75 @@
             margin-bottom: 30px;
         }
 
-        /* PAGE 3: Letter - ปรับปรุงให้ขยายตามความยาวรูปภาพ เลื่อนหน้าจอลงล่างได้ และพื้นหลังสีขาว */
+        /* PAGE 3: Letter */
         #page3 {
-            justify-content: flex-start; /* เรียงจากบนลงล่างเพื่อให้เลื่อนได้แบบธรรมชาติ */
-            padding: 0; /* เอา padding ออกเพื่อให้รูปภาพชิดขอบซ้ายขวาพอดีความกว้างเดิม */
-            background-color: #ffffff; /* เปลี่ยนพื้นหลังเป็นสีขาวล้วน */
-            height: auto; /* ปล่อยให้ความสูงยืดตามรูปภาพ */
+            justify-content: flex-start;
+            padding: 0; 
+            background-color: #ffffff; 
+            height: auto; 
             min-height: 100%;
         }
 
-        /* ปรับแต่งการแสดงผลรูปภาพ photo3.png ให้คงความกว้างเดิมและปล่อยยาวลงไปข้างล่าง */
         .scrollable-letter-wrapper {
             width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .scrollable-letter-wrapper img {
             width: 100%;
-            height: auto; /* ปล่อยให้ความสูงยืดตามสัดส่วนจริงของรูปภาพยาว */
+            height: auto; 
             display: block;
-            border-radius: 0; /* เอา border-radius ออกเพื่อให้รูปยาวต่อเนียนๆ */
+            border-radius: 0; 
             box-shadow: none; 
             border: none;
+        }
+
+        /* พื้นที่สำหรับใส่ปุ่มใต้รูปจดหมายยาว */
+        .letter-footer {
+            width: 100%;
+            padding: 20px 24px 40px 24px;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* PAGE 4: Make a Wish (หน้าปักเทียนเป่าเค้ก) */
+        #page4 {
+            background-color: #fff0f5;
+            text-align: center;
+            justify-content: center;
+        }
+
+        #page4 h1 {
+            font-size: 1.6rem;
+            color: #ff4d6d;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        #page4 p {
+            font-size: 1rem;
+            color: #ff758f;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        .cake-wrapper {
+            width: 75%;
+            max-width: 280px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .cake-wrapper img {
+            width: 100%;
+            height: auto;
+            border: none;
+            box-shadow: 0 10px 25px rgba(255, 77, 109, 0.12);
+            background: transparent;
         }
     </style>
 </head>
@@ -369,11 +417,27 @@
             <button class="next-btn" onclick="goToLetter()">Click to read my letter</button>
         </div>
 
-        <!-- PAGE 3: LETTER (ปรับปรุงให้คงความกว้าง เลื่อนแนวตั้งได้ และพื้นหลังขาว) -->
+        <!-- PAGE 3: LETTER -->
         <div id="page3" class="page">
             <div class="scrollable-letter-wrapper">
                 <img src="photo3.png" alt="My Letter to You" onerror="this.style.display='none';">
+                <!-- เพิ่มพื้นที่ท้ายจดหมายและปุ่มกดเพื่อไปหน้าถัดไป -->
+                <div class="letter-footer">
+                    <button class="next-btn" onclick="goToCakePage()">Next Page ❤️</button>
+                </div>
             </div>
+        </div>
+
+        <!-- PAGE 4: MAKE A WISH & BLOW CAKE (หน้าปักเทียนเป่าเค้กภาษาอังกฤษ) -->
+        <div id="page4" class="page">
+            <h1>Make a Wish ✨</h1>
+            <p>Blow out the candles together!</p>
+            
+            <div class="cake-wrapper">
+                <img src="cake.png" alt="Anniversary Cake" onerror="this.style.display='none';">
+            </div>
+
+            <button class="next-btn" onclick="finishBlowing()">Blow the Candles 🎂</button>
         </div>
 
     </div>
@@ -477,8 +541,18 @@
 
         function goToLetter() {
             navigateTo('page3');
-            // รีเซ็ตการเลื่อนของ container ให้ขึ้นไปด้านบนสุดเมื่อเปิดมาหน้าจดหมาย
             document.querySelector('.phone-container').scrollTop = 0;
+        }
+
+        // ฟังก์ชันไปหน้าเป่าเค้ก (หน้า 4) พร้อมรีเซ็ตการ scroll กลับขึ้นข้างบน
+        function goToCakePage() {
+            navigateTo('page4');
+            document.querySelector('.phone-container').scrollTop = 0;
+        }
+
+        // ฟังก์ชันสำหรับกดปุ่มเป่าเค้กเสร็จสิ้น (สามารถเชื่อมโยงไปหน้าถัดไปในอนาคตได้ที่นี่)
+        function finishBlowing() {
+            alert("Happy Anniversary! 🎂❤️");
         }
     </script>
 </body>
