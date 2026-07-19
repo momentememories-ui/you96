@@ -83,157 +83,466 @@
             transform: scale(0.95);
         }
 
-        #page0, #page1 {
+        #page0 {
+            background-image: url('photo1.jpg');
+            background-size: cover;
+            background-position: center top;
+            position: relative;
+            justify-content: flex-end; 
+            padding: 60px 24px 60px 24px;
+        }
+
+        #page0::before, #page1::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 240, 245, 0.15);
+            z-index: 1;
+        }
+
+        .welcome-action {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            text-align: center;
+        }
+
+        #page1 {
+            justify-content: space-between;
+            padding: 60px 24px 20px 24px;
             background-image: url('photo1.jpg');
             background-size: cover;
             background-position: center top;
             position: relative;
         }
 
-        #page0 { justify-content: flex-end; padding: 60px 24px 60px 24px; }
-        
-        #page0::before, #page1::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(255, 240, 245, 0.15);
-            z-index: 1;
+        .passcode-header, .keypad {
+            position: relative;
+            z-index: 2;
         }
 
-        .welcome-action, .passcode-header, .keypad { position: relative; z-index: 2; width: 100%; text-align: center; }
+        .passcode-header {
+            text-align: center;
+            width: 100%;
+        }
 
-        .passcode-header h2 { font-size: 1.6rem; color: #ffffff; margin-bottom: 15px; text-shadow: 0 2px 8px rgba(255, 77, 109, 0.6); }
+        .passcode-header h2 {
+            font-size: 1.6rem;
+            color: #ffffff;
+            margin-bottom: 15px;
+            font-weight: 600;
+            text-shadow: 0 2px 8px rgba(255, 77, 109, 0.6);
+        }
 
-        .dots-container { display: flex; gap: 15px; justify-content: center; margin-top: 5px; background-color: #ffffff; padding: 12px 25px; border-radius: 20px; display: inline-flex; }
+        .dots-container {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 5px;
+            background-color: #ffffff; 
+            padding: 12px 25px;
+            border-radius: 20px;
+            display: inline-flex;
+            box-shadow: 0 4px 10px rgba(255, 77, 109, 0.15);
+        }
 
-        .dot { width: 12px; height: 12px; border: 2px solid #ffccd5; border-radius: 50%; }
-        .dot.filled { background-color: #ff758f; border-color: #ff758f; }
+        .dot {
+            width: 12px;
+            height: 12px;
+            border: 2px solid #ffccd5;
+            border-radius: 50%;
+            transition: background 0.1s;
+        }
 
-        .keypad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; max-width: 270px; margin-top: auto; margin-bottom: 15px; }
+        .dot.filled {
+            background-color: #ff758f; 
+            border-color: #ff758f;
+        }
 
-        .key { aspect-ratio: 1/1; border-radius: 50%; background-color: #ffffff; font-size: 1.5rem; color: #ff4d6d; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 8px rgba(255, 77, 109, 0.15); border: 1px solid #ffccd5; }
+        .keypad {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            width: 100%;
+            max-width: 270px;
+            margin-top: auto; 
+            margin-bottom: 15px;
+        }
 
-        #page2 { justify-content: center; background-color: #ffffff; padding-top: 20px; padding-bottom: 30px; }
-        .horizontal-counter { font-weight: 700; font-size: 2.5rem; display: flex; align-items: center; justify-content: center; gap: 4px; color: #ff758f; }
-        .colon { color: #ffccd5; font-size: 2.2rem; }
-        .labels-row { display: flex; justify-content: center; gap: 32px; font-size: 0.8rem; font-weight: 600; color: #ffa6c9; margin-bottom: 30px; }
+        .key {
+            aspect-ratio: 1/1;
+            border-radius: 50%;
+            background-color: #ffffff; 
+            font-size: 1.5rem;
+            color: #ff4d6d; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 4px 8px rgba(255, 77, 109, 0.15);
+            transition: background 0.1s, transform 0.1s;
+            border: 1px solid #ffccd5;
+        }
 
-        #page3 { justify-content: flex-start; padding: 0; height: auto; min-height: 100%; }
-        .scrollable-letter-wrapper img { width: 100%; border-radius: 0; box-shadow: none; border: none; }
+        .key:active {
+            background-color: #fff0f5;
+            transform: scale(0.95);
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-10px); }
+            40%, 80% { transform: translateX(10px); }
+        }
+
+        .shake {
+            animation: shake 0.3s ease-in-out;
+        }
+
+        #page2 {
+            justify-content: center;
+            background-color: #ffffff;
+            padding-top: 20px;
+            padding-bottom: 30px;
+        }
+
+        #page2 h1 {
+            font-size: 1.4rem;
+            color: #ff758f;
+            text-align: center;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .img-wrapper-p2 {
+            width: 85%;
+            max-height: 220px;
+            margin-bottom: 35px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .img-wrapper-p2 img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+
+        .horizontal-counter {
+            font-weight: 700;
+            font-size: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            width: 100%;
+            color: #ff758f;
+            text-shadow: 1px 1px 0px #fff, -1px -1px 0px #fff, 1px -1px 0px #fff, -1px 1px 0px #fff, 0px 4px 8px rgba(0,0,0,0.06);
+            margin-bottom: 15px;
+        }
+
+        .time-unit {
+            display: inline-block;
+        }
         
-        #page4 { background-color: #fff0f5; text-align: center; justify-content: center; }
-        .cake-wrapper { width: 75%; max-width: 280px; margin-bottom: 20px; }
+        #days-box { color: #ff85a2; }
+        #hours-box { color: #fbc4ab; }
+        #minutes-box { color: #b7e4c7; }
+        #seconds-box { color: #a8dadc; }
+        .colon { color: #ffccd5; font-size: 2.2rem; padding: 0 2px; }
+
+        .labels-row {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #ffa6c9;
+            margin-bottom: 30px;
+        }
+
+        #page3 {
+            justify-content: flex-start;
+            padding: 0; 
+            background-color: #ffffff; 
+            height: auto; 
+            min-height: 100%;
+        }
+
+        .scrollable-letter-wrapper {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .scrollable-letter-wrapper img {
+            width: 100%;
+            height: auto; 
+            display: block;
+            border-radius: 0; 
+            box-shadow: none; 
+            border: none;
+        }
+
+        .letter-footer {
+            width: 100%;
+            padding: 20px 24px 40px 24px;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+        }
+
+        #page4 {
+            background-color: #fff0f5;
+            text-align: center;
+            justify-content: center;
+        }
+
+        #page4 h1 {
+            font-size: 1.6rem;
+            color: #ff4d6d;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        #page4 p {
+            font-size: 1rem;
+            color: #ff758f;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        .cake-wrapper {
+            width: 75%;
+            max-width: 280px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .cake-wrapper img {
+            width: 100%;
+            height: auto;
+            border: none;
+            box-shadow: 0 10px 25px rgba(255, 77, 109, 0.12);
+            background: transparent;
+        }
     </style>
 </head>
 <body>
 
-    <!-- เพลงพื้นหลัง -->
+    <!-- ใส่ไฟล์เพลงตรงนี้ -->
     <audio id="bgMusic" loop>
         <source src="song.mp3" type="audio/mpeg">
     </audio>
 
     <div class="phone-container">
-        <!-- PAGE 0 -->
+
+        <!-- PAGE 0: WELCOME GATE -->
         <div id="page0" class="page active">
             <div class="welcome-action">
-                <button class="next-btn" onclick="navigateTo('page1')">Let's start the journey ❤️</button>
+                <button class="next-btn" onclick="startJourney()">Let's start the journey ❤️</button>
             </div>
         </div>
 
-        <!-- PAGE 1 -->
+        <!-- PAGE 1: PASSCODE -->
         <div id="page1" class="page">
             <div class="passcode-header">
                 <h2>Enter the Passcode</h2>
                 <div class="dots-container" id="dotsContainer">
-                    <div class="dot"></div><div class="dot"></div><div class="dot"></div>
-                    <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
                 </div>
             </div>
+
             <div class="keypad">
-                <div class="key" onclick="pressKey('1')">1</div><div class="key" onclick="pressKey('2')">2</div><div class="key" onclick="pressKey('3')">3</div>
-                <div class="key" onclick="pressKey('4')">4</div><div class="key" onclick="pressKey('5')">5</div><div class="key" onclick="pressKey('6')">6</div>
-                <div class="key" onclick="pressKey('7')">7</div><div class="key" onclick="pressKey('8')">8</div><div class="key" onclick="pressKey('9')">9</div>
-                <div></div><div class="key" onclick="pressKey('0')">0</div><div class="key" onclick="clearLast()">&larr;</div>
+                <div class="key" onclick="pressKey('1')">1</div>
+                <div class="key" onclick="pressKey('2')">2</div>
+                <div class="key" onclick="pressKey('3')">3</div>
+                <div class="key" onclick="pressKey('4')">4</div>
+                <div class="key" onclick="pressKey('5')">5</div>
+                <div class="key" onclick="pressKey('6')">6</div>
+                <div class="key" onclick="pressKey('7')">7</div>
+                <div class="key" onclick="pressKey('8')">8</div>
+                <div class="key" onclick="pressKey('9')">9</div>
+                <div></div>
+                <div class="key" onclick="pressKey('0')">0</div>
+                <div class="key" onclick="clearLast()">&larr;</div>
             </div>
         </div>
 
-        <!-- PAGE 2 -->
+        <!-- PAGE 2: COUNTER -->
         <div id="page2" class="page">
-            <h1 id="counter-title">Countdown to our 6th Anniversary</h1>
-            <div class="img-wrapper-p2"><img src="photo2.jpg" alt="Memory" onerror="this.style.display='none';"></div>
-            <div class="horizontal-counter">
-                <span id="days-box">00</span><span class="colon">:</span>
-                <span id="hours-box">00</span><span class="colon">:</span>
-                <span id="minutes-box">00</span><span class="colon">:</span>
-                <span id="seconds-box">00</span>
+            <h1 id="counter-title">Countdown to our 1st Anniversary</h1>
+            
+            <div class="img-wrapper-p2">
+                <img src="photo2.jpg" alt="Our Memory 2" onerror="this.style.display='none';">
             </div>
-            <div class="labels-row"><span>days</span><span>hours</span><span>mins</span><span>secs</span></div>
-            <button class="next-btn" onclick="navigateTo('page3')">Click to read my letter</button>
+
+            <div class="horizontal-counter">
+                <span class="time-unit" id="days-box">00</span>
+                <span class="colon">:</span>
+                <span class="time-unit" id="hours-box">00</span>
+                <span class="colon">:</span>
+                <span class="time-unit" id="minutes-box">00</span>
+                <span class="colon">:</span>
+                <span class="time-unit" id="seconds-box">00</span>
+            </div>
+
+            <div class="labels-row">
+                <span>days</span>
+                <span>hours</span>
+                <span>mins</span>
+                <span>secs</span>
+            </div>
+
+            <button class="next-btn" onclick="goToLetter()">Click to read my letter</button>
         </div>
 
-        <!-- PAGE 3 -->
+        <!-- PAGE 3: LETTER -->
         <div id="page3" class="page">
             <div class="scrollable-letter-wrapper">
-                <img src="photo3.png" alt="Letter" onerror="this.style.display='none';">
-                <button class="next-btn" onclick="navigateTo('page4')">🎂 Let's Celebrate!</button>
+                <img src="photo3.png" alt="My Letter to You" onerror="this.style.display='none';">
+                <div class="letter-footer">
+                    <button class="next-btn" onclick="goToCakePage()">Next Page ❤️</button>
+                </div>
             </div>
         </div>
 
-        <!-- PAGE 4 -->
+        <!-- PAGE 4: MAKE A WISH -->
         <div id="page4" class="page">
             <h1>Make a Wish ✨</h1>
-            <div class="cake-wrapper"><img src="cake.png" alt="Cake" onerror="this.style.display='none';"></div>
+            <p>Blow out the candles together!</p>
+            
+            <div class="cake-wrapper">
+                <img src="cake.png" alt="Anniversary Cake" onerror="this.style.display='none';">
+            </div>
+
             <button class="next-btn" onclick="finishBlowing()">Blow the Candles 🎂</button>
         </div>
+
     </div>
 
     <script>
         const CORRECT_PASSCODE = "270725";
-        const TARGET_DATE = new Date("2026-07-27T00:00:00").getTime();
-        let currentInput = "";
+        const TARGET_DATE = new Date("2026-07-27T00:00:00").getTime(); 
 
-        function navigateTo(pageId) {
+        // เริ่มเล่นเพลงเมื่อกดปุ่มแรก
+        function startJourney() {
             const music = document.getElementById('bgMusic');
-            if (music.paused) music.play().catch(e => console.log("Autoplay blocked"));
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.getElementById(pageId).classList.add('active');
-            if(pageId === 'page2') startCountdown();
+            music.play();
+            navigateTo('page1');
         }
+
+        let currentInput = "";
+        const dots = document.querySelectorAll('.dot');
+        const page1 = document.getElementById('page1');
 
         function pressKey(num) {
             if (currentInput.length < 6) {
                 currentInput += num;
                 updateDots();
-                if (currentInput.length === 6) setTimeout(checkPasscode, 200);
+                
+                if (currentInput.length === 6) {
+                    setTimeout(checkPasscode, 200);
+                }
             }
         }
 
-        function clearLast() { currentInput = currentInput.slice(0, -1); updateDots(); }
+        function clearLast() {
+            if (currentInput.length > 0) {
+                currentInput = currentInput.slice(0, -1);
+                updateDots();
+            }
+        }
 
         function updateDots() {
-            document.querySelectorAll('.dot').forEach((dot, index) => {
-                dot.className = index < currentInput.length ? 'dot filled' : 'dot';
+            dots.forEach((dot, index) => {
+                if (index < currentInput.length) {
+                    dot.classList.add('filled');
+                } else {
+                    dot.classList.remove('filled');
+                }
             });
         }
 
         function checkPasscode() {
-            if (currentInput === CORRECT_PASSCODE) navigateTo('page2');
-            else { currentInput = ""; updateDots(); alert("Wrong passcode!"); }
+            if (currentInput === CORRECT_PASSCODE) {
+                navigateTo('page2');
+                startCountdown();
+            } else {
+                page1.classList.add('shake');
+                if (navigator.vibrate) {
+                    navigator.vibrate(200);
+                }
+                
+                setTimeout(() => {
+                    page1.classList.remove('shake');
+                    currentInput = "";
+                    updateDots();
+                }, 400);
+            }
+        }
+
+        function navigateTo(pageId) {
+            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
         }
 
         function startCountdown() {
-            function update() {
-                const diff = TARGET_DATE - new Date().getTime();
-                if (diff <= 0) return;
-                document.getElementById('days-box').innerText = String(Math.floor(diff / (1000*60*60*24))).padStart(2, '0');
-                document.getElementById('hours-box').innerText = String(Math.floor((diff % (1000*60*60*24)) / (1000*60*60))).padStart(2, '0');
-                document.getElementById('minutes-box').innerText = String(Math.floor((diff % (1000*60*60)) / (1000*60))).padStart(2, '0');
-                document.getElementById('seconds-box').innerText = String(Math.floor((diff % (1000*60)) / 1000)).padStart(2, '0');
+            const titleElement = document.getElementById('counter-title');
+
+            function updateTimer() {
+                const now = new Date().getTime();
+                const difference = TARGET_DATE - now;
+
+                if (difference <= 0) {
+                    document.getElementById('days-box').innerText = "00";
+                    document.getElementById('hours-box').innerText = "00";
+                    document.getElementById('minutes-box').innerText = "00";
+                    document.getElementById('seconds-box').innerText = "00";
+                    titleElement.innerText = "Happy Anniversary 1 Year";
+                    return;
+                }
+
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                document.getElementById('days-box').innerText = String(days).padStart(2, '0');
+                document.getElementById('hours-box').innerText = String(hours).padStart(2, '0');
+                document.getElementById('minutes-box').innerText = String(minutes).padStart(2, '0');
+                document.getElementById('seconds-box').innerText = String(seconds).padStart(2, '0');
             }
-            setInterval(update, 1000);
+
+            updateTimer();
+            setInterval(updateTimer, 1000);
         }
 
-        function finishBlowing() { alert("Happy Anniversary! 🎂❤️"); }
+        function goToLetter() {
+            navigateTo('page3');
+            document.querySelector('.phone-container').scrollTop = 0;
+        }
+
+        function goToCakePage() {
+            navigateTo('page4');
+            document.querySelector('.phone-container').scrollTop = 0;
+        }
+
+        function finishBlowing() {
+            alert("Happy Anniversary! 🎂❤️");
+        }
     </script>
 </body>
 </html>
