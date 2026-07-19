@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Our Anniversary</title>
+    <!-- นำเข้าฟอนต์อ้วนกลมน่ารักสำหรับหน้านับเวลา -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             box-sizing: border-box;
@@ -88,11 +90,10 @@
             background-size: cover;
             background-position: center top;
             position: relative;
-            justify-content: flex-end; /* ดันปุ่มลงไปอยู่ด้านล่างสุด */
+            justify-content: flex-end; 
             padding: 60px 24px 60px 24px;
         }
 
-        /* Overlay โปร่งแสงคุมโทนชมพูอ่อนบางๆ */
         #page0::before, #page1::before {
             content: '';
             position: absolute;
@@ -205,52 +206,90 @@
             animation: shake 0.3s ease-in-out;
         }
 
-        /* PAGE 2: Counter */
+        /* NEW PAGE 2: Counter ปรับปรุงตามรูปเรฟ */
+        #page2 {
+            justify-content: flex-start;
+            background-color: #ffffff;
+            padding-top: 20px;
+            padding-bottom: 30px;
+        }
+
         #page2 h1 {
-            font-size: 1.6rem;
-            color: #ff4d6d;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.4rem;
+            color: #ff758f;
             text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 15px;
             font-weight: 600;
         }
 
         .img-wrapper-p2 {
-            width: 90%;
-            max-height: 220px;
+            width: 85%;
+            max-height: 200px;
             margin-bottom: 25px;
-        }
-
-        .countdown-container {
-            width: 100%;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
+            display: flex;
             justify-content: center;
         }
 
-        .time-box {
-            background: #fff0f5; 
-            padding: 12px 5px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(255, 77, 109, 0.05);
-            border: 1px solid #ffccd5;
+        .img-wrapper-p2 img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
         }
 
-        .time-num {
-            font-size: 1.4rem;
+        /* สไตล์ชุดตัวเลขและตัวหนังสือแบบอ้วนกลมน่ารักตามเรฟ */
+        .cute-counter-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            margin-top: 5px;
+        }
+
+        .counter-row {
+            text-align: center;
+            width: 100%;
+        }
+
+        .cute-num {
+            font-family: 'Fredoka', sans-serif;
             font-weight: 700;
-            color: #ff4d6d;
+            font-size: 2.6rem;
+            line-height: 1;
+            display: block;
+            letter-spacing: 1px;
+            /* เพิ่มขอบและเงาจางๆ ให้ตัวเลขเด้งหนาน่ารัก */
+            text-shadow: 1px 1px 0px #fff, -1px -1px 0px #fff, 1px -1px 0px #fff, -1px 1px 0px #fff, 0px 4px 8px rgba(0,0,0,0.06);
+        }
+
+        .cute-label {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 2px;
             display: block;
         }
 
-        .time-label {
-            font-size: 0.75rem;
-            color: #ff758f;
-            text-transform: uppercase;
-            font-weight: 600;
-            margin-top: 2px;
-        }
+        /* ไล่สีสันพาสเทลตามหน่วยใหญ่ลงไปเล็ก */
+        .color-years { color: #ff85a2; }
+        .label-years { color: #ffa6c9; }
+
+        .color-months { color: #ffb3c6; }
+        .label-months { color: #ffccd5; }
+
+        .color-days { color: #fbc4ab; }
+        .label-days { color: #fcd5ce; }
+
+        .color-hours { color: #b7e4c7; }
+        .label-hours { color: #d8f3dc; }
+
+        .color-minutes { color: #c0b9dd; }
+        .label-minutes { color: #d6d2ed; }
+
+        .color-seconds { color: #a8dadc; }
+        .label-seconds { color: #e1f5fe; }
 
         /* PAGE 3: Letter */
         #page3 {
@@ -293,7 +332,7 @@
 
     <div class="phone-container">
 
-        <!-- PAGE 0: WELCOME GATE (เหลือเพียงปุ่มกดด้านล่างปุ่มเดียว) -->
+        <!-- PAGE 0: WELCOME GATE -->
         <div id="page0" class="page active">
             <div class="welcome-action">
                 <button class="next-btn" onclick="navigateTo('page1')">Let's start the journey ❤️</button>
@@ -330,7 +369,7 @@
             </div>
         </div>
 
-        <!-- PAGE 2: COUNTER -->
+        <!-- PAGE 2: COUNTER (ปรับแต่งตามรูปเรฟฟอนต์อ้วนกลมแยกชั้น) -->
         <div id="page2" class="page">
             <h1>Happy official 1st anniversary</h1>
             
@@ -338,12 +377,32 @@
                 <img src="photo2.jpg" alt="Our Memory 2" onerror="this.style.display='none';">
             </div>
 
-            <div class="countdown-container">
-                <div class="time-box"><span class="time-num" id="years">00</span><span class="time-label">Years</span></div>
-                <div class="time-box"><span class="time-num" id="months">00</span><span class="time-label">Months</span></div>
-                <div class="time-box"><span class="time-num" id="days">00</span><span class="time-label">Days</span></div>
-                <div class="time-box" style="grid-column: span 1.5;"><span class="time-num" id="minutes">00</span><span class="time-label">Minutes</span></div>
-                <div class="time-box" style="grid-column: span 1.5;"><span class="time-num" id="seconds">00</span><span class="time-label">Seconds</span></div>
+            <!-- การแสดงผลเวลาน่ารักๆ เรียงจากหน่วยใหญ่ลงไปเล็ก -->
+            <div class="cute-counter-container">
+                <div class="counter-row">
+                    <span class="cute-num color-years" id="years">00</span>
+                    <span class="cute-label label-years">years</span>
+                </div>
+                <div class="counter-row">
+                    <span class="cute-num color-months" id="months">00</span>
+                    <span class="cute-label label-months">months</span>
+                </div>
+                <div class="counter-row">
+                    <span class="cute-num color-days" id="days">00</span>
+                    <span class="cute-label label-days">days</span>
+                </div>
+                <div class="counter-row">
+                    <span class="cute-num color-hours" id="hours">00</span>
+                    <span class="cute-label label-hours">hours</span>
+                </div>
+                <div class="counter-row">
+                    <span class="cute-num color-minutes" id="minutes">00</span>
+                    <span class="cute-label label-minutes">minutes</span>
+                </div>
+                <div class="counter-row">
+                    <span class="cute-num color-seconds" id="seconds">00</span>
+                    <span class="cute-label label-seconds">seconds</span>
+                </div>
             </div>
 
             <button class="next-btn" onclick="goToLetter()">Click to read my letter</button>
@@ -441,14 +500,17 @@
 
                 const diffMs = now - ANNIVERSARY_DATE;
                 const totalSeconds = Math.floor(diffMs / 1000);
+                const hours = Math.floor((totalSeconds % (3600 * 24)) / 3600);
                 const minutes = Math.floor((totalSeconds % 3600) / 60);
                 const seconds = totalSeconds % 60;
 
-                document.getElementById('years').innerText = String(Math.max(0, years)).padStart(2, '0');
-                document.getElementById('months').innerText = String(Math.max(0, months)).padStart(2, '0');
-                document.getElementById('days').innerText = String(Math.max(0, days)).padStart(2, '0');
-                document.getElementById('minutes').innerText = String(Math.max(0, minutes)).padStart(2, '0');
-                document.getElementById('seconds').innerText = String(Math.max(0, seconds)).padStart(2, '0');
+                // อัปเดตข้อมูลตัวเลขลงหน้าจอในหน่วยที่แยกออกจากกันแบบละเอียด
+                document.getElementById('years').innerText = String(Math.max(0, years)).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                document.getElementById('months').innerText = String(Math.max(0, months)).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                document.getElementById('days').innerText = String(Math.max(0, days)).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                document.getElementById('hours').innerText = String(Math.max(0, hours)).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                document.getElementById('minutes').innerText = String(Math.max(0, minutes)).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                document.getElementById('seconds').innerText = String(Math.max(0, seconds)).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
             }
 
             updateCounter();
