@@ -14,8 +14,8 @@
         }
 
         body {
-            background-color: #fff0f5; /* เปลี่ยนเป็นพื้นหลังชมพูอ่อนอ่อน */
-            color: #ff4d6d; /* สีตัวอักษรหลักเป็นโทนชมพูเข้ม */
+            background-color: #fff0f5; 
+            color: #ff4d6d; 
             display: flex;
             justify-content: center;
             align-items: center;
@@ -29,7 +29,7 @@
             height: 100vh;
             max-width: 450px;
             position: relative;
-            background: #ffffff; /* ด้านในหลักเน้นสีขาว */
+            background: #ffffff; 
             box-shadow: 0 0 20px rgba(255, 77, 109, 0.1);
             overflow-y: auto;
             display: flex;
@@ -65,7 +65,7 @@
         }
 
         button.next-btn {
-            background-color: #ff758f; /* ปุ่มสีชมพูหวาน */
+            background-color: #ff758f; 
             color: white;
             border: none;
             padding: 14px 28px;
@@ -82,26 +82,78 @@
             transform: scale(0.95);
         }
 
-        /* PAGE 1: Passcode Lock with Photo 1 Background */
-        #page1 {
-            justify-content: space-between;
-            padding: 50px 24px 40px 24px;
+        /* PAGE 0: Welcome Gate using photo1.jpg */
+        #page0 {
             background-image: url('photo1.jpg');
             background-size: cover;
-            background-position: center;
+            background-position: center top;
             position: relative;
+            justify-content: space-between; /* ดันกล่องข้อความและปุ่มแยกจากกันเพื่อให้เห็นรูปตรงกลางชัดๆ */
+            padding: 60px 24px 40px 24px;
         }
 
-        /* Overlay สีชมพูโปร่งบางๆ เพื่อคุมโทนและช่วยให้กล่องข้อความเด่นขึ้น */
-        #page1::before {
+        /* Overlay โปร่งแสงคุมโทนชมพูอ่อนบางๆ */
+        #page0::before, #page1::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(255, 240, 245, 0.2);
+            background-color: rgba(255, 240, 245, 0.15);
             z-index: 1;
+        }
+
+        .welcome-header, .welcome-action {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            text-align: center;
+        }
+
+        .welcome-card-top {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(255, 77, 109, 0.15);
+            border: 1px solid #ffccd5;
+            display: inline-block;
+            width: 100%;
+            max-width: 320px;
+        }
+
+        .welcome-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: #ff4d6d;
+        }
+
+        .welcome-subtitle {
+            font-size: 0.9rem;
+            color: #ff758f;
+        }
+
+        .welcome-icon {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        /* PAGE 1: Passcode Lock */
+        #page1 {
+            justify-content: space-between;
+            padding: 60px 24px 20px 24px;
+            background-image: url('photo1.jpg');
+            background-size: cover;
+            background-position: center top;
+            position: relative;
         }
 
         .passcode-header, .keypad {
@@ -127,7 +179,7 @@
             gap: 15px;
             justify-content: center;
             margin-top: 5px;
-            background-color: #ffffff; /* กล่องขาวทึบปกติ */
+            background-color: #ffffff; 
             padding: 12px 25px;
             border-radius: 20px;
             display: inline-flex;
@@ -143,28 +195,26 @@
         }
 
         .dot.filled {
-            background-color: #ff758f; /* จุดที่ใส่แล้วสีชมพูเข้ม */
+            background-color: #ff758f; 
             border-color: #ff758f;
         }
 
         .keypad {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
+            gap: 12px;
             width: 100%;
-            max-width: 280px;
-            margin-top: 20px;
-            margin-bottom: 20px;
+            max-width: 270px;
+            margin-top: auto; 
+            margin-bottom: 15px;
         }
 
-        /* ปุ่มกดปกติ สีขาวทึบ ตัวหนังสือชมพู ไม่มีเอฟเฟกต์กระจก */
         .key {
             aspect-ratio: 1/1;
             border-radius: 50%;
-            border: 2px solid #ffecd2;
-            background-color: #ffffff; /* สีขาวทึบปกติ */
-            font-size: 1.6rem;
-            color: #ff4d6d; /* ตัวอักษรสีชมพู */
+            background-color: #ffffff; 
+            font-size: 1.4rem;
+            color: #ff4d6d; 
             display: flex;
             align-items: center;
             justify-content: center;
@@ -180,7 +230,6 @@
             transform: scale(0.95);
         }
 
-        /* เอฟเฟกต์สั่นเมื่อกดรหัสผิด (สั่นเฉพาะกล่อง ไม่รีเฟรชหน้าเว็บ) */
         @keyframes shake {
             0%, 100% { transform: translateX(0); }
             20%, 60% { transform: translateX(-10px); }
@@ -215,7 +264,7 @@
         }
 
         .time-box {
-            background: #fff0f5; /* กล่องเวลาชมพูอ่อน */
+            background: #fff0f5; 
             padding: 12px 5px;
             border-radius: 12px;
             text-align: center;
@@ -247,7 +296,7 @@
         }
 
         .letter-paper {
-            background: #ffffff; /* กระดาษจดหมายสีขาวสะอาด */
+            background: #ffffff; 
             width: 100%;
             padding: 25px 20px;
             border-radius: 12px;
@@ -279,9 +328,25 @@
 
     <div class="phone-container">
 
-        <!-- PAGE 1: PASSCODE -->
-        <div id="page1" class="page active">
+        <!-- PAGE 0: WELCOME GATE (ใช้ photo1.jpg เป็นพื้นหลังเรียบร้อย) -->
+        <div id="page0" class="page active">
+            <div class="welcome-header">
+                <div class="welcome-card-top">
+                    <div class="welcome-icon">💝</div>
+                    <h1 class="welcome-title">Our Memory Lane</h1>
+                    <p class="welcome-subtitle">บันทึกเรื่องราวการเดินทางของเรา</p>
+                </div>
+            </div>
             
+            <!-- ปล่อยพื้นที่ตรงกลางให้โล่งสำหรับแสดงรูปภาพเต็มๆ -->
+
+            <div class="welcome-action">
+                <button class="next-btn" onclick="navigateTo('page1')">เริ่มออกเดินทาง ✨</button>
+            </div>
+        </div>
+
+        <!-- PAGE 1: PASSCODE -->
+        <div id="page1" class="page">
             <div class="passcode-header">
                 <h2>Enter the Passcode</h2>
                 <div class="dots-container" id="dotsContainer">
@@ -381,13 +446,11 @@
                 navigateTo('page2');
                 startTimer();
             } else {
-                // เพิ่มคลาสสั่นเมื่อรหัสผิด
                 page1.classList.add('shake');
                 if (navigator.vibrate) {
                     navigator.vibrate(200);
                 }
                 
-                // เมื่อสั่นเสร็จจะรีเซ็ตค่าตัวเลขในกล่องรหัสเพื่อป้อนใหม่ทันที โดยไม่มีการโหลดหน้าเว็บใหม่
                 setTimeout(() => {
                     page1.classList.remove('shake');
                     currentInput = "";
