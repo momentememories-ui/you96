@@ -11,7 +11,8 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* กำหนดให้ใช้ฟอนต์อ้วนกลม Fredoka ทั้งเว็บไซต์ ทุกองค์ประกอบ */
+            font-family: 'Fredoka', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
 
@@ -71,7 +72,7 @@
             color: white;
             border: none;
             padding: 14px 28px;
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: 600;
             border-radius: 30px;
             cursor: pointer;
@@ -179,7 +180,7 @@
             aspect-ratio: 1/1;
             border-radius: 50%;
             background-color: #ffffff; 
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             color: #ff4d6d; 
             display: flex;
             align-items: center;
@@ -206,7 +207,7 @@
             animation: shake 0.3s ease-in-out;
         }
 
-        /* PAGE 2: Counter ปรับปรุงฟอนต์อ้วนทั้งหมด */
+        /* PAGE 2: Counter */
         #page2 {
             justify-content: center;
             background-color: #ffffff;
@@ -215,7 +216,6 @@
         }
 
         #page2 h1 {
-            font-family: 'Fredoka', sans-serif;
             font-size: 1.4rem;
             color: #ff758f;
             text-align: center;
@@ -240,7 +240,6 @@
 
         /* กล่องครอบเวลานอนบรรทัดเดียว */
         .horizontal-counter {
-            font-family: 'Fredoka', sans-serif;
             font-weight: 700;
             font-size: 2.5rem;
             display: flex;
@@ -257,19 +256,18 @@
             display: inline-block;
         }
         
-        /* สีกระจายแบบพาสเทลสวยงาม */
+        /* สีกระจายแบบพาสเทล */
         #days-box { color: #ff85a2; }
         #hours-box { color: #fbc4ab; }
         #minutes-box { color: #b7e4c7; }
         #seconds-box { color: #a8dadc; }
         .colon { color: #ffccd5; font-size: 2.2rem; padding: 0 2px; }
 
-        /* ป้ายกำกับเล็กๆ ด้านล่าง เปลี่ยนเป็นฟอนต์อ้วน Fredoka */
+        /* ป้ายกำกับเล็กๆ ด้านล่างตัวเลข */
         .labels-row {
             display: flex;
             justify-content: center;
             gap: 32px;
-            font-family: 'Fredoka', sans-serif;
             font-size: 0.8rem;
             font-weight: 600;
             color: #ffa6c9;
@@ -354,9 +352,8 @@
             </div>
         </div>
 
-        <!-- PAGE 2: COUNTER (ปรับข้อความให้เปลี่ยนอัตโนมัติเมื่อครบกำหนด) -->
+        <!-- PAGE 2: COUNTER -->
         <div id="page2" class="page">
-            <!-- เพิ่ม id="counter-title" เพื่อควบคุมการเปลี่ยนข้อความทาง JavaScript -->
             <h1 id="counter-title">Countdown to our 1st Anniversary</h1>
             
             <div class="img-wrapper-p2">
@@ -374,7 +371,7 @@
                 <span class="time-unit" id="seconds-box">00</span>
             </div>
 
-            <!-- คำอธิบายหน่วยเวลาด้านล่างตัวเลขฟอนต์อ้วนกลม -->
+            <!-- คำอธิบายหน่วยเวลาด้านล่างตัวเลข -->
             <div class="labels-row">
                 <span>days</span>
                 <span>hours</span>
