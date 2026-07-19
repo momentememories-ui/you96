@@ -274,32 +274,33 @@
             margin-bottom: 30px;
         }
 
-        /* PAGE 3: Letter - ปรับปรุงพื้นหลังเป็น photo3.png และจัดข้อความกึ่งกลาง */
+        /* PAGE 3: Letter - ปรับปรุงระยะขอบความกว้างเพื่อไม่ให้ข้อความล้นรูปกระดาษโน้ต */
         #page3 {
             justify-content: flex-start;
-            padding: 50px 24px;
+            padding: 60px 40px; /* เพิ่มระยะปาดขอบซ้าย-ขวาเป็น 40px เพื่อบีบข้อความให้อยู่ในกระดาษ */
             background-image: url('photo3.png');
             background-size: cover;
             background-position: center;
             position: relative;
         }
 
-        /* ข้อความลอยเด่น ไม่มีกรอบขาว และจัดกึ่งกลาง */
+        /* ปรับลดขนาดฟอนต์และระยะบรรทัดให้อ่านง่ายและพอดีกับตัวกระดาษโน้ต */
         .letter-content {
             width: 100%;
-            line-height: 1.7;
-            font-size: 1.05rem;
+            line-height: 1.5;
+            font-size: 0.85rem; /* ลดขนาดฟอนต์ลงจากเดิมเพื่อป้องกันการล้นขอบขวา */
             color: #4a4a4a;
             white-space: pre-line;
-            text-align: center; /* จัดตัวอักษรให้อยู่กึ่งกลาง */
+            text-align: center; 
             font-weight: 500;
-            text-shadow: 0px 1px 2px rgba(255, 255, 255, 0.8); /* เพิ่มมิติให้อ่านง่ายขึ้นบนพื้นหลัง */
+            text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.9); 
+            word-wrap: break-word; /* สั่งตัดคำอัตโนมัติเมื่อสิ้นสุดความกว้าง */
         }
 
         .cursor {
             display: inline-block;
             width: 2px;
-            height: 16px;
+            height: 14px;
             background-color: #ff4d6d;
             animation: blink 0.7s infinite;
             vertical-align: middle;
@@ -382,7 +383,7 @@
             <button class="next-btn" onclick="goToLetter()">Click to read my letter</button>
         </div>
 
-        <!-- PAGE 3: LETTER (ปรับปรุงตามเงื่อนไขใหม่) -->
+        <!-- PAGE 3: LETTER -->
         <div id="page3" class="page">
             <div class="letter-content">
                 <span id="typing-text"></span><span class="cursor" id="cursor"></span>
