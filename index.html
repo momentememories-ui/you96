@@ -15,6 +15,12 @@
         img { max-width: 100%; object-fit: cover; border-radius: 16px; box-shadow: 0 8px 20px rgba(255, 77, 109, 0.1); border: 3px solid #fff; }
         button.next-btn { background-color: #ff758f; color: white; border: none; padding: 14px 28px; font-size: 1.1rem; font-weight: 600; border-radius: 30px; cursor: pointer; margin-top: 30px; box-shadow: 0 4px 10px rgba(255, 117, 143, 0.3); transition: transform 0.2s; }
         button.next-btn:active { transform: scale(0.95); }
+        
+        /* สไตล์สำหรับควัน */
+        @keyframes smoke { 0% { opacity: 0.8; transform: translateY(0) scale(1); } 100% { opacity: 0; transform: translateY(-30px) scale(1.5); } }
+        .smoke-puff { position: absolute; width: 40px; height: 40px; background: rgba(200, 200, 200, 0.5); border-radius: 50%; pointer-events: none; animation: smoke 1.5s ease-out forwards; }
+        
+        /* ส่วนคงที่หน้า 0-3 */
         #page0 { background-image: url('photo1.jpg'); background-size: cover; background-position: center top; position: relative; justify-content: flex-end; padding: 60px 24px 60px 24px; }
         #page0::before, #page1::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(255, 240, 245, 0.15); z-index: 1; }
         .welcome-action { position: relative; z-index: 2; width: 100%; text-align: center; }
@@ -68,7 +74,8 @@
             </div>
         </div>
 
-        <div id="page4" class="page" style="background-color: #ffffff; padding: 0; position: relative; overflow: hidden;">
+        <!-- หน้า 4 ที่แก้ไขแล้ว -->
+        <div id="page4" class="page" style="background-color: #fff0f5; padding: 0; position: relative; overflow: hidden;">
             <div id="cake-area" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('cake.png'); background-size: contain; background-repeat: no-repeat; background-position: center; cursor: pointer;" onclick="placeCandle(event)"></div>
             <div style="position: absolute; bottom: 40px; z-index: 10; width: 100%; display: flex; justify-content: center;">
                 <button id="blow-btn" class="next-btn" onclick="finishBlowing()" style="display: none; margin-top: 0;">Blow the Candles 🎂</button>
@@ -81,7 +88,7 @@
         const TARGET_DATE = new Date("2026-07-27T00:00:00").getTime(); 
         function startJourney() { document.getElementById('bgMusic').play(); navigateTo('page1'); }
         let currentInput = "", candleCount = 0;
-        const dots = document.querySelectorAll('.dot'), page1 = document.getElementById('page1'), MAX_CANDLES = 10;
+        const dots = document.querySelectorAll('.dot'), page1 = document.getElementById('page1'), MAX_CANDLES = 6;
 
         function pressKey(num) { if (currentInput.length < 6) { currentInput += num; updateDots(); if (currentInput.length === 6) setTimeout(checkPasscode, 200); } }
         function clearLast() { if (currentInput.length > 0) { currentInput = currentInput.slice(0, -1); updateDots(); } }
@@ -95,7 +102,7 @@
                 document.getElementById('days-box').innerText = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
                 document.getElementById('hours-box').innerText = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
                 document.getElementById('minutes-box').innerText = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
-                document.getElementById('seconds-box').innerText = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
+                document.getElementById('seconds-box').innerText = String(Math.floor((diff % (1000 * 60)) / 1000))).padStart(2, '0');
             }
             setInterval(updateTimer, 1000); updateTimer();
         }
@@ -110,13 +117,22 @@
                 if (candleCount === MAX_CANDLES) document.getElementById('blow-btn').style.display = 'block';
             }
         }
-        function goToLetter() { navigateTo('page3'); document.querySelector('.phone-container').scrollTop = 0; }
-        function goToCakePage() { navigateTo('page4'); document.querySelector('.phone-container').scrollTop = 0; }
         function finishBlowing() { 
             const candles = document.querySelectorAll('.my-candle');
-            candles.forEach(c => c.src = 'candle-off.png');
+            candles.forEach(c => {
+                c.src = 'candle-off.png';
+                // สร้างควัน
+                const smoke = document.createElement('div');
+                smoke.className = 'smoke-puff';
+                smoke.style.left = (parseInt(c.style.left) + 20) + 'px';
+                smoke.style.top = c.style.top;
+                document.getElementById('cake-area').appendChild(smoke);
+                setTimeout(() => smoke.remove(), 1500);
+            });
             document.getElementById('blow-btn').style.display = 'none';
         }
+        function goToLetter() { navigateTo('page3'); document.querySelector('.phone-container').scrollTop = 0; }
+        function goToCakePage() { navigateTo('page4'); document.querySelector('.phone-container').scrollTop = 0; }
     </script>
 </body>
 </html>
