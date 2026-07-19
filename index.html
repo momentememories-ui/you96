@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Our Anniversary</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: #fcf8f7;
+            color: #4a4a4a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Container for Mobile view */
+        .phone-container {
+            width: 100vw;
+            height: 100vh;
+            max-width: 450px;
+            position: relative;
+            background: #fff;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .page {
+            display: none;
+            width: 100%;
+            min-height: 100%;
+            padding: 30px 24px;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .page.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        img {
+            max-width: 100%;
+            object-fit: cover;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+
+        button.next-btn {
+            background-color: #d4a373;
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            margin-top: 30px;
+            box-shadow: 0 4px 10px rgba(186, 140, 99, 0.3);
+            transition: transform 0.2s;
+        }
+
+        button.next-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* PAGE 1: Passcode Lock */
+        #page1 {
+            justify-content: space-between;
+            padding: 40px 24px;
+        }
+
+        /* การจัดวางรูปหน้าแรก: วางไว้ด้านบนสุดเป็นจุดดึงสายตา */
+        .img-wrapper-p1 {
+            width: 85%;
+            aspect-ratio: 1/1;
+            margin-bottom: 10px;
+        }
+
+        .passcode-header {
+            text-align: center;
+        }
+
+        .passcode-header h2 {
+            font-size: 1.4rem;
+            color: #6c584c;
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        .dots-container {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 5px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border: 2px solid #d4a373;
+            border-radius: 50%;
+            transition: background 0.1s;
+        }
+
+        .dot.filled {
+            background-color: #d4a373;
+        }
+
+        .keypad {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            width: 100%;
+            max-width: 280px;
+            margin-top: 20px;
+        }
+
+        .key {
+            aspect-ratio: 1/1;
+            border-radius: 50%;
+            border: 1px solid #faedcd;
+            background-color: #fefae0;
+            font-size: 1.6rem;
+            color: #6c584c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.1s;
+        }
+
+        .key:active {
+            background-color: #e9edc9;
+        }
+
+        /* เอฟเฟกต์สั่นเมื่อกดรหัสผิด */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-10px); }
+            40%, 80% { transform: translateX(10px); }
+        }
+
+        .shake {
+            animation: shake 0.3s ease-in-out;
+        }
+
+        /* PAGE 2: Counter */
+        #page2 h1 {
+            font-size: 1.6rem;
+            color: #6c584c;
+            text-align: center;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        /* การจัดวางรูปหน้าสอง: วางไว้ตรงกลางระหว่างหัวข้อกับตัวนับเวลา */
+        .img-wrapper-p2 {
+            width: 90%;
+            max-height: 220px;
+            margin-bottom: 25px;
+        }
+
+        .countdown-container {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        /* แถวสองสำหรับ Minutes & Seconds ขยายให้สมดุล */
+        .countdown-container .time-box:nth-child(4),
+        .countdown-container .time-box:nth-child(5) {
+            grid-column: span 1;
+        }
+        .countdown-container {
+            justify-content: center;
+        }
+
+        .time-box {
+            background: #faedcd;
+            padding: 12px 5px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+
+        .time-num {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #6c584c;
+            display: block;
+        }
+
+        .time-label {
+            font-size: 0.75rem;
+            color: #a3b18a;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-top: 2px;
+        }
+
+        /* PAGE 3: Letter */
+        #page3 {
+            justify-content: flex-start;
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
+
+        .letter-paper {
+            background: #fffdf9;
+            width: 100%;
+            padding: 25px 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            border: 1px solid #f4eae1;
+            line-height: 1.6;
+            font-size: 1rem;
+            color: #555;
+            white-space: pre-line; /* รักษาการย่อหน้า */
+            text-align: left;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 2px;
+            height: 15px;
+            background-color: #d4a373;
+            animation: blink 0.7s infinite;
+            vertical-align: middle;
+            margin-left: 2px;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="phone-container">
+
+        <!-- PAGE 1: PASSCODE -->
+        <div id="page1" class="page active">
+            <!-- จัดวางรูปไว้ด้านบนเพื่อดึงดูดสายตาตั้งแต่เปิดมา -->
+            <div class="img-wrapper-p1">
+                <img src="photo1.jpg" alt="Our Memory 1" onerror="this.style.display='none'; alert('Please place photo1.jpg in the same folder');">
+            </div>
+            
+            <div class="passcode-header">
+                <h2>Enter the Passcode</h2>
+                <div class="dots-container" id="dotsContainer">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+            </div>
+
+            <div class="keypad">
+                <div class="key" onclick="pressKey('1')">1</div>
+                <div class="key" onclick="pressKey('2')">2</div>
+                <div class="key" onclick="pressKey('3')">3</div>
+                <div class="key" onclick="pressKey('4')">4</div>
+                <div class="key" onclick="pressKey('5')">5</div>
+                <div class="key" onclick="pressKey('6')">6</div>
+                <div class="key" onclick="pressKey('7')">7</div>
+                <div class="key" onclick="pressKey('8')">8</div>
+                <div class="key" onclick="pressKey('9')">9</div>
+                <div></div>
+                <div class="key" onclick="pressKey('0')">0</div>
+                <div class="key" onclick="clearLast()">&larr;</div>
+            </div>
+        </div>
+
+        <!-- PAGE 2: COUNTER -->
+        <div id="page2" class="page">
+            <h1>Happy official 1st anniversary</h1>
+            
+            <!-- จัดวางรูปไว้ตรงกลาง เพื่อสร้างสมดุลระหว่าง Text ด้านบน และตัวนับเวลาด้านล่าง -->
+            <div class="img-wrapper-p2">
+                <img src="photo2.jpg" alt="Our Memory 2" onerror="this.style.display='none';">
+            </div>
+
+            <div class="countdown-container">
+                <div class="time-box"><span class="time-num" id="years">00</span><span class="time-label">Years</span></div>
+                <div class="time-box"><span class="time-num" id="months">00</span><span class="time-label">Months</span></div>
+                <div class="time-box"><span class="time-num" id="days">00</span><span class="time-label">Days</span></div>
+                <div class="time-box" style="grid-column: span 1.5;"><span class="time-num" id="minutes">00</span><span class="time-label">Minutes</span></div>
+                <div class="time-box" style="grid-column: span 1.5;"><span class="time-num" id="seconds">00</span><span class="time-label">Seconds</span></div>
+            </div>
+
+            <button class="next-btn" onclick="goToLetter()">Click to read my letter</button>
+        </div>
+
+        <!-- PAGE 3: LETTER -->
+        <div id="page3" class="page">
+            <div class="letter-paper">
+                <span id="typing-text"></span><span class="cursor" id="cursor"></span>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // --- CONFIGURATION ---
+        const CORRECT_PASSCODE = "270725";
+        // ตั้งค่าวันครบรอบปีแรกของคุณที่นี่ (Format: YYYY-MM-DDTHH:mm:ss)
+        const ANNIVERSARY_DATE = new Date("2025-07-27T00:00:00"); 
+
+        // --- PASSCODE SYSTEM ---
+        let currentInput = "";
+        const dots = document.querySelectorAll('.dot');
+        const page1 = document.getElementById('page1');
+
+        function pressKey(num) {
+            if (currentInput.length < 6) {
+                currentInput += num;
+                updateDots();
+                
+                if (currentInput.length === 6) {
+                    setTimeout(checkPasscode, 200);
+                }
+            }
+        }
+
+        function clearLast() {
+            if (currentInput.length > 0) {
+                currentInput = currentInput.slice(0, -1);
+                updateDots();
+            }
+        }
+
+        function updateDots() {
+            dots.forEach((dot, index) => {
+                if (index < currentInput.length) {
+                    dot.classList.add('filled');
+                } else {
+                    dot.classList.remove('filled');
+                }
+            });
+        }
+
+        function checkPasscode() {
+            if (currentInput === CORRECT_PASSCODE) {
+                navigateTo('page2');
+                startTimer();
+            } else {
+                // เอฟเฟกต์สั่นเมื่อรหัสผิด
+                page1.classList.add('shake');
+                // ฟังก์ชันสั่นของมือถือ (ถ้าเครื่องรองรับ)
+                if (navigator.vibrate) {
+                    navigator.vibrate(200);
+                }
+                
+                setTimeout(() => {
+                    page1.classList.remove('shake');
+                    currentInput = "";
+                    updateDots();
+                }, 400);
+            }
+        }
+
+        function navigateTo(pageId) {
+            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+        }
+
+        // --- REAL-TIME COUNTER ---
+        function startTimer() {
+            function updateCounter() {
+                const now = new Date();
+                
+                // คำนวณความต่างแบบละเอียด (ปี เดือน วัน นาที วินาที)
+                let years = now.getFullYear() - ANNIVERSARY_DATE.getFullYear();
+                let months = now.getMonth() - ANNIVERSARY_DATE.getMonth();
+                let days = now.getDate() - ANNIVERSARY_DATE.getDate();
+                
+                if (days < 0) {
+                    months--;
+                    // หาจำนวนวันของเดือนที่แล้ว
+                    const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+                    days += prevMonth;
+                }
+                
+                if (months < 0) {
+                    years--;
+                    months += 12;
+                }
+
+                const diffMs = now - ANNIVERSARY_DATE;
+                // คำนวณนาทีและวินาทีที่เหลือเศษจากวัน
+                const totalSeconds = Math.floor(diffMs / 1000);
+                const minutes = Math.floor((totalSeconds % 3600) / 60);
+                const seconds = totalSeconds % 60;
+
+                // อัปเดตลงหน้าจอ (ใส่เลข 0 นำหน้าถ้ามีหลักเดียว)
+                document.getElementById('years').innerText = String(Math.max(0, years)).padStart(2, '0');
+                document.getElementById('months').innerText = String(Math.max(0, months)).padStart(2, '0');
+                document.getElementById('days').innerText = String(Math.max(0, days)).padStart(2, '0');
+                document.getElementById('minutes').innerText = String(Math.max(0, minutes)).padStart(2, '0');
+                document.getElementById('seconds').innerText = String(Math.max(0, seconds)).padStart(2, '0');
+            }
+
+            updateCounter();
+            setInterval(updateCounter, 1000);
+        }
+
+        // --- TYPING LETTER SYSTEM ---
+        const letterText = `Happy Official 1st Anniversary, my one and only, Jesse Lee. 
+
+I still remember the first day we started talking and the first day we met. Every memory we've created together is so precious to me, and I treasure with all my heart.
+
+I can't believe it's already been a year. Time has passed by so quickly, and soon we'll be celebrating your birthday together for the second time. Looking back, we've shared so many moments—happiness, laughter, tears, disagreements, and countless unforgettable memories. But no matter what we've been through, we've never let go of each other's hand.
+
+To me, you are the most amazing boyfriend. You've been consistent, loyal, caring, and exactly the same wonderful person since the very beginning. You make me feel like the luckiest woman because I've never experienced a love like yours before. Thank you for loving me the way you do. And I hope you know that you deserve every bit of that love in return.
+
+No matter what life brings us, I know we'll keep holding hands and overcome every obstacle together… even the really difficult ones—like your unbelievably loud burps and your deadly smelly farts that leave me with no choice but to surrender. 
+
+Thank you for being my safe place, my best friend, and the love of my life.
+
+I love you with all my heart, today, tomorrow, and always.
+
+Happy 1st Anniversary, my love. Here's to forever.`;
+
+        function goToLetter() {
+            navigateTo('page3');
+            typeWriter();
+        }
+
+        let index = 0;
+        function typeWriter() {
+            if (index < letterText.length) {
+                document.getElementById("typing-text").textContent += letterText.charAt(index);
+                index++;
+                // เลื่อนหน้าจอลงด้านล่างอัตโนมัติเมื่อข้อความยาวขึ้น เพื่อไม่ให้ตกจอตัวเครื่อง
+                const container = document.querySelector('.phone-container');
+                container.scrollTop = container.scrollHeight;
+                
+                // ปรับความเร็วในการพิมพ์ตรงนี้ (มิลลิวินาทีต่อตัวอักษร)
+                setTimeout(typeWriter, 40); 
+            } else {
+                // พิมพ์เสร็จแล้วให้ซ่อน Cursor กระพริบ
+                document.getElementById("cursor").style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
