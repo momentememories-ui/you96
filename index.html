@@ -88,8 +88,8 @@
             background-size: cover;
             background-position: center top;
             position: relative;
-            justify-content: space-between; /* ดันกล่องข้อความและปุ่มแยกจากกันเพื่อให้เห็นรูปตรงกลางชัดๆ */
-            padding: 60px 24px 40px 24px;
+            justify-content: flex-end; /* ดันปุ่มลงไปอยู่ด้านล่างสุด */
+            padding: 60px 24px 60px 24px;
         }
 
         /* Overlay โปร่งแสงคุมโทนชมพูอ่อนบางๆ */
@@ -104,46 +104,11 @@
             z-index: 1;
         }
 
-        .welcome-header, .welcome-action {
+        .welcome-action {
             position: relative;
             z-index: 2;
             width: 100%;
             text-align: center;
-        }
-
-        .welcome-card-top {
-            background: #ffffff;
-            padding: 20px;
-            border-radius: 20px;
-            box-shadow: 0 4px 15px rgba(255, 77, 109, 0.15);
-            border: 1px solid #ffccd5;
-            display: inline-block;
-            width: 100%;
-            max-width: 320px;
-        }
-
-        .welcome-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 5px;
-            color: #ff4d6d;
-        }
-
-        .welcome-subtitle {
-            font-size: 0.9rem;
-            color: #ff758f;
-        }
-
-        .welcome-icon {
-            font-size: 3.5rem;
-            margin-bottom: 10px;
-            animation: pulse 1.5s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
         }
 
         /* PAGE 1: Passcode Lock */
@@ -328,20 +293,10 @@
 
     <div class="phone-container">
 
-        <!-- PAGE 0: WELCOME GATE (ใช้ photo1.jpg เป็นพื้นหลังเรียบร้อย) -->
+        <!-- PAGE 0: WELCOME GATE (เหลือเพียงปุ่มกดด้านล่างปุ่มเดียว) -->
         <div id="page0" class="page active">
-            <div class="welcome-header">
-                <div class="welcome-card-top">
-                    <div class="welcome-icon">💝</div>
-                    <h1 class="welcome-title">Our Memory Lane</h1>
-                    <p class="welcome-subtitle">บันทึกเรื่องราวการเดินทางของเรา</p>
-                </div>
-            </div>
-            
-            <!-- ปล่อยพื้นที่ตรงกลางให้โล่งสำหรับแสดงรูปภาพเต็มๆ -->
-
             <div class="welcome-action">
-                <button class="next-btn" onclick="navigateTo('page1')">เริ่มออกเดินทาง ✨</button>
+                <button class="next-btn" onclick="navigateTo('page1')">Let's start the journey ❤️</button>
             </div>
         </div>
 
