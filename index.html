@@ -76,8 +76,15 @@
             <div id="cake-area" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('cake.png'); background-size: cover; background-position: center; cursor: pointer;" onclick="placeCandle(event)"></div>
             <div style="position: absolute; bottom: 50px; width: 100%; display: flex; flex-direction: column; align-items: center; z-index: 10;">
                 <button id="blow-btn" class="next-btn" onclick="finishBlowing()" style="display: none; background-color: #ff758f;">Blow the Candles 🎂</button>
-                <button id="gift-btn" class="next-btn" onclick="openGift()" style="display: none; background-color: #ff758f;">Open the gift box</button>
+                <button id="gift-btn" class="next-btn" onclick="navigateTo('page5')" style="display: none; background-color: #ff758f;">Open the gift box</button>
             </div>
+        </div>
+
+        <!-- หน้าสุดท้าย: หน้าของขวัญ -->
+        <div id="page5" class="page" style="background-color: #fff;">
+            <h1>🎁 Surprise!</h1>
+            <img src="gift.jpg" alt="Gift" style="margin-top:20px; border:none; box-shadow:none;">
+            <p style="margin-top:20px; font-size:1.2rem;">Happy Anniversary, my love!</p>
         </div>
     </div>
 
@@ -86,7 +93,7 @@
         const TARGET_DATE = new Date("2026-07-27T00:00:00").getTime(); 
         function startJourney() { document.getElementById('bgMusic').play(); navigateTo('page1'); }
         let currentInput = "", candleCount = 0;
-        const dots = document.querySelectorAll('.dot'), page1 = document.getElementById('page1'), MAX_CANDLES = 6;
+        const dots = document.querySelectorAll('.dot'), page1 = document.getElementById('page1'), MAX_CANDLES = 10;
 
         function pressKey(num) { if (currentInput.length < 6) { currentInput += num; updateDots(); if (currentInput.length === 6) setTimeout(checkPasscode, 200); } }
         function clearLast() { if (currentInput.length > 0) { currentInput = currentInput.slice(0, -1); updateDots(); } }
@@ -108,9 +115,9 @@
             if (candleCount < MAX_CANDLES) {
                 const area = document.getElementById('cake-area'), c = document.createElement('img');
                 c.src = 'candle.png'; c.className = 'my-candle'; 
-                c.style.position = 'absolute'; c.style.width = '80px'; c.style.border = 'none'; c.style.boxShadow = 'none';
+                c.style.position = 'absolute'; c.style.width = '60px'; c.style.border = 'none'; c.style.boxShadow = 'none';
                 const rect = area.getBoundingClientRect();
-                c.style.left = (e.clientX - rect.left - 40) + 'px'; c.style.top = (e.clientY - rect.top - 70) + 'px';
+                c.style.left = (e.clientX - rect.left - 30) + 'px'; c.style.top = (e.clientY - rect.top - 50) + 'px';
                 c.style.pointerEvents = 'none'; area.appendChild(c); candleCount++;
                 if (candleCount === MAX_CANDLES) document.getElementById('blow-btn').style.display = 'block';
             }
@@ -122,7 +129,7 @@
                 const smoke = document.createElement('div');
                 smoke.className = 'smoke-puff';
                 smoke.style.position = 'absolute';
-                smoke.style.left = (parseInt(c.style.left) + 20) + 'px';
+                smoke.style.left = (parseInt(c.style.left) + 15) + 'px';
                 smoke.style.top = c.style.top;
                 document.getElementById('cake-area').appendChild(smoke);
                 setTimeout(() => smoke.remove(), 1500);
@@ -130,7 +137,6 @@
             document.getElementById('blow-btn').style.display = 'none';
             document.getElementById('gift-btn').style.display = 'block';
         }
-        function openGift() { alert("Gift box opened!"); }
         function goToLetter() { navigateTo('page3'); document.querySelector('.phone-container').scrollTop = 0; }
         function goToCakePage() { navigateTo('page4'); document.querySelector('.phone-container').scrollTop = 0; }
     </script>
