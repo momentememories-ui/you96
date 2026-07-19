@@ -18,6 +18,10 @@
         @keyframes smoke { 0% { opacity: 0.8; transform: translateY(0) scale(1); } 100% { opacity: 0; transform: translateY(-30px) scale(1.5); } }
         .smoke-puff { position: absolute; width: 40px; height: 40px; background: rgba(200, 200, 200, 0.5); border-radius: 50%; pointer-events: none; animation: smoke 1.5s ease-out forwards; }
         #cake-area { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('cake.png'); background-size: contain; background-repeat: no-repeat; background-position: center; cursor: pointer; }
+        
+        #gift-modal { display: none; opacity: 0; visibility: hidden; transition: opacity 0.3s ease-in-out; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.95); z-index: 100; flex-direction: column; align-items: center; justify-content: center; padding: 20px; }
+
+        /* หน้าอื่นๆ (0-4) คงเดิมตามที่เคยตกลงกันไว้ */
         #page0 { background-image: url('photo1.jpg'); background-size: cover; background-position: center top; position: relative; justify-content: flex-end; padding: 60px 24px 60px 24px; }
         #page0::before, #page1::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(255, 240, 245, 0.15); z-index: 1; }
         .welcome-action { position: relative; z-index: 2; width: 100%; text-align: center; }
@@ -52,6 +56,7 @@
     <audio id="bgMusic" loop><source src="song.mp3" type="audio/mpeg"></audio>
 
     <div class="phone-container">
+        <!-- Pages 0-4 as previously defined -->
         <div id="page0" class="page active"><div class="welcome-action"><button class="next-btn" onclick="startJourney()">Let's start the journey ❤️</button></div></div>
         <div id="page1" class="page">
             <div class="passcode-header"><h2>Enter the Passcode</h2><div class="dots-container" id="dotsContainer"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
@@ -83,11 +88,19 @@
                 <div class="gift-item" onclick="openGift('flower.png', '', 1)" style="cursor: pointer;"><img src="gift2.png" alt="Gift 2" style="width: 120px; border: none; box-shadow: none; background: transparent;"></div>
                 <div class="gift-item" onclick="openGift('dinner', 'Dinner at Sancreed well cafe', 2)" style="cursor: pointer;"><img src="gift3.png" alt="Gift 3" style="width: 120px; border: none; box-shadow: none; background: transparent;"></div>
             </div>
-            <button id="memories-btn" class="next-btn" style="display: none; margin-top: 30px;">Click to see our memories</button>
-            <div id="gift-modal" style="display: none; opacity: 0; transition: opacity 0.4s ease; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.95); z-index: 100; flex-direction: column; align-items: center; justify-content: center; padding: 20px;">
+            <button id="memories-btn" class="next-btn" onclick="navigateTo('page6')" style="display: none; margin-top: 30px;">Click to see our memories</button>
+            <div id="gift-modal">
                 <img id="modal-img" src="" style="max-width: 80%; border: none; box-shadow: none; background: transparent;">
                 <p id="modal-text" style="margin-top: 20px; font-size: 1.5rem; color: #ff758f; font-weight: bold; text-align: center;"></p>
                 <button onclick="closeModal()" style="margin-top: 30px; padding: 10px 20px; border-radius: 20px; border: none; background: #ffccd5; color: #ff4d6d; cursor: pointer;">Close</button>
+            </div>
+        </div>
+
+        <div id="page6" class="page" style="background-color: #fff; padding: 20px;">
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+                <img src="photo1.jpg"><img src="photo2.jpg"><img src="photo3.jpg"><img src="photo4.jpg">
+                <img src="photo5.jpg"><img src="photo6.jpg"><img src="photo7.jpg"><img src="photo8.jpg">
+                <img src="photo9.jpg"><img src="photo10.jpg"><img src="photo11.jpg"><img src="photo12.jpg">
             </div>
         </div>
     </div>
@@ -147,13 +160,14 @@
             if(src === 'dinner') { img.style.display = 'none'; txt.innerText = text; } 
             else { img.src = src; img.style.display = 'block'; txt.innerText = text; }
             modal.style.display = 'flex';
+            modal.style.visibility = 'visible';
             setTimeout(() => modal.style.opacity = '1', 10);
             if (openedGifts.every(val => val === true)) document.getElementById('memories-btn').style.display = 'block';
         }
         function closeModal() {
             const modal = document.getElementById('gift-modal');
             modal.style.opacity = '0';
-            setTimeout(() => modal.style.display = 'none', 400);
+            setTimeout(() => { modal.style.display = 'none'; modal.style.visibility = 'hidden'; }, 300);
         }
         function goToLetter() { navigateTo('page3'); document.querySelector('.phone-container').scrollTop = 0; }
         function goToCakePage() { navigateTo('page4'); document.querySelector('.phone-container').scrollTop = 0; }
