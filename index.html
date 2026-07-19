@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Happy officail 1st anniversary</title>
+    <title>Happy officail 1th anniversary</title>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Fredoka', sans-serif; -webkit-tap-highlight-color: transparent; }
@@ -20,6 +20,7 @@
         #cake-area { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('cake.png'); background-size: contain; background-repeat: no-repeat; background-position: center; cursor: pointer; }
         #gift-modal { display: none; opacity: 0; visibility: hidden; transition: opacity 0.3s ease-in-out; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.95); z-index: 100; flex-direction: column; align-items: center; justify-content: center; padding: 20px; }
 
+        /* หน้า 0-4 คงเดิม */
         #page0 { background-image: url('photo1.jpg'); background-size: cover; background-position: center top; position: relative; justify-content: flex-end; padding: 60px 24px 60px 24px; }
         #page0::before, #page1::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(255, 240, 245, 0.15); z-index: 1; }
         .welcome-action { position: relative; z-index: 2; width: 100%; text-align: center; }
@@ -39,15 +40,17 @@
         #page2 h1 { font-size: 1.4rem; color: #ff758f; text-align: center; margin-bottom: 25px; font-weight: 600; }
         .img-wrapper-p2 { width: 85%; max-height: 220px; margin-bottom: 35px; display: flex; justify-content: center; }
         .img-wrapper-p2 img { width: 100%; height: 100%; object-fit: cover; border-radius: 20px; }
-        .horizontal-counter { font-weight: 700; font-size: 2.5rem; display: flex; align-items: center; justify-content: center; gap: 4px; width: 100%; color: #ff758f; text-shadow: 1px 1px 0px #fff, -1px -1px 0px #fff, 1px -1px 0px #fff, -1px 1px 0px #fff, 0px 4px 8px rgba(0,0,0,0.06); margin-bottom: 15px; }
-        .time-unit { display: inline-block; }
-        #days-box { color: #ff85a2; } #hours-box { color: #fbc4ab; } #minutes-box { color: #b7e4c7; } #seconds-box { color: #a8dadc; }
-        .colon { color: #ffccd5; font-size: 2.2rem; padding: 0 2px; }
+        .horizontal-counter { font-weight: 700; font-size: 2.5rem; display: flex; align-items: center; justify-content: center; gap: 4px; width: 100%; color: #ff758f; margin-bottom: 15px; }
         .labels-row { display: flex; justify-content: center; gap: 32px; font-size: 0.8rem; font-weight: 600; color: #ffa6c9; margin-bottom: 30px; }
         #page3 { justify-content: flex-start; padding: 0; background-color: #ffffff; height: auto; min-height: 100%; }
         .scrollable-letter-wrapper { width: 100%; display: flex; flex-direction: column; align-items: center; }
-        .scrollable-letter-wrapper img { width: 100%; height: auto; display: block; border-radius: 0; box-shadow: none; border: none; }
         .letter-footer { width: 100%; padding: 20px 24px 40px 24px; background-color: #ffffff; display: flex; justify-content: center; }
+        
+        /* หน้า 6 ที่แก้ไขใหม่ */
+        .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; width: 100%; }
+        .gallery-item { cursor: pointer; transition: transform 0.2s; }
+        .gallery-item img { width: 100%; height: 160px; object-fit: cover; border-radius: 12px; border: none; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .gallery-item:nth-child(even) { margin-top: 30px; }
     </style>
 </head>
 <body>
@@ -60,15 +63,15 @@
             <div class="keypad"><div class="key" onclick="pressKey('1')">1</div><div class="key" onclick="pressKey('2')">2</div><div class="key" onclick="pressKey('3')">3</div><div class="key" onclick="pressKey('4')">4</div><div class="key" onclick="pressKey('5')">5</div><div class="key" onclick="pressKey('6')">6</div><div class="key" onclick="pressKey('7')">7</div><div class="key" onclick="pressKey('8')">8</div><div class="key" onclick="pressKey('9')">9</div><div></div><div class="key" onclick="pressKey('0')">0</div><div class="key" onclick="clearLast()">&larr;</div></div>
         </div>
         <div id="page2" class="page">
-            <h1 id="counter-title">Countdown to our 6th Anniversary</h1>
-            <div class="img-wrapper-p2"><img src="photo2.jpg" alt="Our Memory 2" onerror="this.style.display='none';"></div>
-            <div class="horizontal-counter"><span class="time-unit" id="days-box">00</span><span class="colon">:</span><span class="time-unit" id="hours-box">00</span><span class="colon">:</span><span class="time-unit" id="minutes-box">00</span><span class="colon">:</span><span class="time-unit" id="seconds-box">00</span></div>
+            <h1 id="counter-title">Countdown to our 1th Anniversary</h1>
+            <div class="img-wrapper-p2"><img src="photo2.jpg" alt="Our Memory 2"></div>
+            <div class="horizontal-counter"><span id="days-box">00</span>:<span id="hours-box">00</span>:<span id="minutes-box">00</span>:<span id="seconds-box">00</span></div>
             <div class="labels-row"><span>days</span><span>hours</span><span>mins</span><span>secs</span></div>
             <button class="next-btn" onclick="goToLetter()">Click to read my letter</button>
         </div>
         <div id="page3" class="page">
             <div class="scrollable-letter-wrapper">
-                <img src="photo3.png" alt="My Letter to You" onerror="this.style.display='none';">
+                <img src="photo3.png" alt="My Letter to You">
                 <div class="letter-footer"><button class="next-btn" onclick="goToCakePage()">🎂 Let's Start!</button></div>
             </div>
         </div>
@@ -78,43 +81,44 @@
                 <button id="blow-btn" class="next-btn" onclick="finishBlowing()" style="display: none; background-color: #ff758f;">Blow the Candles 🎂</button>
             </div>
         </div>
-        
         <div id="page5" class="page" style="background-color: #fff0f5; justify-content: center; padding: 40px 20px;">
             <div id="gift-grid" style="display: flex; flex-direction: column; gap: 25px; width: 100%; max-width: 300px; align-items: center;">
-                <div class="gift-item" onclick="openGift('cakedu.png', '', 0)" style="cursor: pointer;"><img src="gift1.png" alt="Gift 1" style="width: 120px; border: none; box-shadow: none; background: transparent;"></div>
-                <div class="gift-item" onclick="openGift('flower.png', '', 1)" style="cursor: pointer;"><img src="gift2.png" alt="Gift 2" style="width: 120px; border: none; box-shadow: none; background: transparent;"></div>
-                <div class="gift-item" onclick="openGift('dinner', 'Dinner at Sancreed well cafe', 2)" style="cursor: pointer;"><img src="gift3.png" alt="Gift 3" style="width: 120px; border: none; box-shadow: none; background: transparent;"></div>
+                <div class="gift-item" onclick="openGift('cakedu.png', '', 0)" style="cursor: pointer;"><img src="gift1.png" style="width: 120px;"></div>
+                <div class="gift-item" onclick="openGift('flower.png', '', 1)" style="cursor: pointer;"><img src="gift2.png" style="width: 120px;"></div>
+                <div class="gift-item" onclick="openGift('dinner', 'Dinner at Sancreed well cafe', 2)" style="cursor: pointer;"><img src="gift3.png" style="width: 120px;"></div>
             </div>
             <button id="memories-btn" class="next-btn" onclick="navigateTo('page6')" style="display: none; margin-top: 30px;">Click to see our memories</button>
             <div id="gift-modal">
-                <img id="modal-img" src="" style="max-width: 80%; border: none; box-shadow: none; background: transparent;">
+                <img id="modal-img" src="" style="max-width: 80%;">
                 <p id="modal-text" style="margin-top: 20px; font-size: 1.5rem; color: #ff758f; font-weight: bold; text-align: center;"></p>
-                <button onclick="closeModal()" style="margin-top: 30px; padding: 10px 20px; border-radius: 20px; border: none; background: #ffccd5; color: #ff4d6d; cursor: pointer;">Close</button>
+                <button onclick="closeModal()" style="margin-top: 30px; padding: 10px 20px; border-radius: 20px; border: none; background: #ffccd5; cursor: pointer;">Close</button>
             </div>
         </div>
 
-        <div id="page6" class="page" style="background-color: #fff; padding: 20px; display: flex; flex-direction: column; align-items: center;">
-            <h2 style="color: #ff4d6d; margin-bottom: 20px; font-size: 1.5rem;">WANIDA & JESSE</h2>
-            <div id="memory-grid" style="columns: 2; column-gap: 10px; width: 100%;">
-                <div onclick="openMemory('photo5.jpg', '1. Our first photo together In Thailand')" style="break-inside: avoid; margin-bottom: 10px; cursor: pointer;"><img src="photo5.jpg" style="width: 100%; border-radius: 10px;"></div>
-                <div onclick="openMemory('photo6.jpg', '2. Our 2nd met in Singapore')" style="break-inside: avoid; margin-bottom: 10px; cursor: pointer;"><img src="photo6.jpg" style="width: 100%; border-radius: 10px;"></div>
-                <div onclick="openMemory('photo7.jpg', '3. Our 3rd meeting in my hometown')" style="break-inside: avoid; margin-bottom: 10px; cursor: pointer;"><img src="photo7.jpg" style="width: 100%; border-radius: 10px;"></div>
-                <div onclick="openMemory('photo8.jpg', '4. Finally, moving together')" style="break-inside: avoid; margin-bottom: 10px; cursor: pointer;"><img src="photo8.jpg" style="width: 100%; border-radius: 10px;"></div>
-                <div onclick="openMemory('photo9.jpg', '5. Our first time celebrating Christmas together')" style="break-inside: avoid; margin-bottom: 10px; cursor: pointer;"><img src="photo9.jpg" style="width: 100%; border-radius: 10px;"></div>
-                <div onclick="openMemory('photo10.jpg', '6. First time meeting my mom and my best friend')" style="break-inside: avoid; margin-bottom: 10px; cursor: pointer;"><img src="photo10.jpg" style="width: 100%; border-radius: 10px;"></div>
-                <div onclick="openMemory('photo11.jpg', '7. First time having hair cut together')" style="break-inside: avoid; margin-bottom: 10px; cursor: pointer;"><img src="photo11.jpg" style="width: 100%; border-radius: 10px;"></div>
-                <div onclick="openMemory('photo12.jpg', '8. Our first Valentine\'s together')" style="break-inside: avoid; margin-bottom: 10px; cursor: pointer;"><img src="photo12.jpg" style="width: 100%; border-radius: 10px;"></div>
-                <div onclick="openMemory('photo13.jpg', '9. Our first trip to Taiwan')" style="break-inside: avoid; margin-bottom: 10px; cursor: pointer;"><img src="photo13.jpg" style="width: 100%; border-radius: 10px;"></div>
-                <div onclick="openMemory('photo14.jpg', '10. 2nd time met cutie girl Avi.')" style="break-inside: avoid; margin-bottom: 10px; cursor: pointer;"><img src="photo14.jpg" style="width: 100%; border-radius: 10px;"></div>
-                <div onclick="openMemory('photo15.jpg', '11. Last year we first met, and this year it is Wat Arun for cerebrate Monthsary')" style="break-inside: avoid; margin-bottom: 10px; cursor: pointer;"><img src="photo15.jpg" style="width: 100%; border-radius: 10px;"></div>
-                <div onclick="openMemory('photo16.jpg', '12. Take photos of the photo booth countless times.')" style="break-inside: avoid; margin-bottom: 10px; cursor: pointer;"><img src="photo16.jpg" style="width: 100%; border-radius: 10px;"></div>
-            </div>
-            <div id="memory-modal" style="display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(255,255,255,0.98); z-index: 200; flex-direction: column; align-items: center; justify-content: center; padding: 20px;">
-                <img id="modal-mem-img" src="" style="max-width: 90%; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);">
-                <p id="modal-mem-text" style="margin-top: 20px; font-size: 1.2rem; color: #ff4d6d; font-weight: 600; text-align: center; padding: 0 10px;"></p>
-                <button onclick="closeMemory()" style="margin-top: 30px; padding: 10px 30px; border-radius: 30px; border: none; background: #ff758f; color: white; font-weight: bold; cursor: pointer;">Close</button>
+        <!-- หน้า 6 -->
+        <div id="page6" class="page" style="background-color: #fff; padding: 20px; overflow-y: auto;">
+            <h2 style="text-align: center; color: #ff758f; margin-bottom: 20px; font-weight: 700;">WANIDA & JESSE</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item" onclick="openPhoto('photo5.jpg', '1. Our first photo together In Thailand')"><img src="photo5.jpg"></div>
+                <div class="gallery-item" onclick="openPhoto('photo6.jpg', '2. Our 2nd met in Singapore')"><img src="photo6.jpg"></div>
+                <div class="gallery-item" onclick="openPhoto('photo7.jpg', '3. Our 3rd meeting in my hometown')"><img src="photo7.jpg"></div>
+                <div class="gallery-item" onclick="openPhoto('photo8.jpg', '4. Finally, moving together')"><img src="photo8.jpg"></div>
+                <div class="gallery-item" onclick="openPhoto('photo9.jpg', '5. Our first time celebrating Christmas together')"><img src="photo9.jpg"></div>
+                <div class="gallery-item" onclick="openPhoto('photo10.jpg', '6. First time meeting my mom and my best friend')"><img src="photo10.jpg"></div>
+                <div class="gallery-item" onclick="openPhoto('photo11.jpg', '7. First time having hair cut together')"><img src="photo11.jpg"></div>
+                <div class="gallery-item" onclick="openPhoto('photo12.jpg', '8. Our first Valentine\'s together')"><img src="photo12.jpg"></div>
+                <div class="gallery-item" onclick="openPhoto('photo13.jpg', '9. Our first trip to Taiwan')"><img src="photo13.jpg"></div>
+                <div class="gallery-item" onclick="openPhoto('photo14.jpg', '10. 2nd time met cutie girl Avi.')"><img src="photo14.jpg"></div>
+                <div class="gallery-item" onclick="openPhoto('photo15.jpg', '11. Last year we first met, and this year it is Wat Arun for cerebrate Monthsary')"><img src="photo15.jpg"></div>
+                <div class="gallery-item" onclick="openPhoto('photo16.jpg', '12. Take photos of the photo booth countless times.')"><img src="photo16.jpg"></div>
             </div>
         </div>
+    </div>
+
+    <!-- Modal หน้า 6 -->
+    <div id="photo-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.98); z-index:200; flex-direction:column; align-items:center; justify-content:center; padding:20px;" onclick="this.style.display='none'">
+        <img id="modal-img-full" style="max-width: 90%; border-radius: 15px;">
+        <p id="modal-text-full" style="margin-top: 20px; font-size: 1.2rem; color: #ff4d6d; text-align: center; font-weight: 600;"></p>
     </div>
 
     <script>
@@ -129,7 +133,7 @@
         function pressKey(num) { if (currentInput.length < 6) { currentInput += num; updateDots(); if (currentInput.length === 6) setTimeout(checkPasscode, 200); } }
         function clearLast() { if (currentInput.length > 0) { currentInput = currentInput.slice(0, -1); updateDots(); } }
         function updateDots() { dots.forEach((dot, index) => { if (index < currentInput.length) dot.classList.add('filled'); else dot.classList.remove('filled'); }); }
-        function checkPasscode() { if (currentInput === CORRECT_PASSCODE) { navigateTo('page2'); startCountdown(); } else { page1.classList.add('shake'); if (navigator.vibrate) navigator.vibrate(200); setTimeout(() => { page1.classList.remove('shake'); currentInput = ""; updateDots(); }, 400); } }
+        function checkPasscode() { if (currentInput === CORRECT_PASSCODE) { navigateTo('page2'); startCountdown(); } else { page1.classList.add('shake'); setTimeout(() => { page1.classList.remove('shake'); currentInput = ""; updateDots(); }, 400); } }
         function navigateTo(p) { document.querySelectorAll('.page').forEach(pg => pg.classList.remove('active')); document.getElementById(p).classList.add('active'); }
         
         function startCountdown() {
@@ -148,26 +152,16 @@
             if (candleCount < MAX_CANDLES) {
                 const area = document.getElementById('cake-area'), c = document.createElement('img');
                 c.src = 'candle.png'; c.className = 'my-candle'; 
-                c.style.position = 'absolute'; c.style.width = '60px'; c.style.border = 'none'; c.style.boxShadow = 'none';
+                c.style.position = 'absolute'; c.style.width = '60px'; c.style.border = 'none';
                 const rect = area.getBoundingClientRect();
                 c.style.left = (e.clientX - rect.left - 30) + 'px'; c.style.top = (e.clientY - rect.top - 50) + 'px';
-                c.style.pointerEvents = 'none'; area.appendChild(c); candleCount++;
+                area.appendChild(c); candleCount++;
                 if (candleCount === MAX_CANDLES) document.getElementById('blow-btn').style.display = 'block';
             }
         }
         
         function finishBlowing() { 
-            const candles = document.querySelectorAll('.my-candle');
-            candles.forEach(c => {
-                c.src = 'candle-off.png';
-                const smoke = document.createElement('div');
-                smoke.className = 'smoke-puff';
-                smoke.style.position = 'absolute';
-                smoke.style.left = (parseInt(c.style.left) + 15) + 'px';
-                smoke.style.top = c.style.top;
-                document.getElementById('cake-area').appendChild(smoke);
-                setTimeout(() => smoke.remove(), 1500);
-            });
+            document.querySelectorAll('.my-candle').forEach(c => c.src = 'candle-off.png');
             document.getElementById('blow-btn').style.display = 'none';
             setTimeout(() => navigateTo('page5'), 1000);
         }
@@ -177,28 +171,14 @@
             openedGifts[index] = true;
             if(src === 'dinner') { img.style.display = 'none'; txt.innerText = text; } 
             else { img.src = src; img.style.display = 'block'; txt.innerText = text; }
-            modal.style.display = 'flex';
-            modal.style.visibility = 'visible';
-            setTimeout(() => modal.style.opacity = '1', 10);
-            if (openedGifts.every(val => val === true)) { document.getElementById('memories-btn').style.display = 'block'; }
+            modal.style.display = 'flex'; modal.style.visibility = 'visible'; setTimeout(() => modal.style.opacity = '1', 10);
+            if (openedGifts.every(val => val === true)) document.getElementById('memories-btn').style.display = 'block';
         }
         
-        function closeModal() {
-            const modal = document.getElementById('gift-modal');
-            modal.style.opacity = '0';
-            setTimeout(() => { modal.style.display = 'none'; modal.style.visibility = 'hidden'; }, 300);
-        }
-        
-        function openMemory(src, text) {
-            const modal = document.getElementById('memory-modal');
-            document.getElementById('modal-mem-img').src = src;
-            document.getElementById('modal-mem-text').innerText = text;
-            modal.style.display = 'flex';
-        }
-        function closeMemory() { document.getElementById('memory-modal').style.display = 'none'; }
-        
-        function goToLetter() { navigateTo('page3'); document.querySelector('.phone-container').scrollTop = 0; }
-        function goToCakePage() { navigateTo('page4'); document.querySelector('.phone-container').scrollTop = 0; }
+        function closeModal() { const modal = document.getElementById('gift-modal'); modal.style.opacity = '0'; setTimeout(() => { modal.style.display = 'none'; }, 300); }
+        function openPhoto(src, text) { document.getElementById('modal-img-full').src = src; document.getElementById('modal-text-full').innerText = text; document.getElementById('photo-modal').style.display = 'flex'; }
+        function goToLetter() { navigateTo('page3'); }
+        function goToCakePage() { navigateTo('page4'); }
     </script>
 </body>
 </html>
