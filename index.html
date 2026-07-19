@@ -14,8 +14,8 @@
         }
 
         body {
-            background-color: #fcf8f7;
-            color: #4a4a4a;
+            background-color: #fff0f5; /* เปลี่ยนเป็นพื้นหลังชมพูอ่อนอ่อน */
+            color: #ff4d6d; /* สีตัวอักษรหลักเป็นโทนชมพูเข้ม */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -29,8 +29,8 @@
             height: 100vh;
             max-width: 450px;
             position: relative;
-            background: #fff;
-            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+            background: #ffffff; /* ด้านในหลักเน้นสีขาว */
+            box-shadow: 0 0 20px rgba(255, 77, 109, 0.1);
             overflow-y: auto;
             display: flex;
             flex-direction: column;
@@ -60,11 +60,12 @@
             max-width: 100%;
             object-fit: cover;
             border-radius: 16px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            box-shadow: 0 8px 20px rgba(255, 77, 109, 0.1);
+            border: 3px solid #fff;
         }
 
         button.next-btn {
-            background-color: #d4a373;
+            background-color: #ff758f; /* ปุ่มสีชมพูหวาน */
             color: white;
             border: none;
             padding: 14px 28px;
@@ -73,7 +74,7 @@
             border-radius: 30px;
             cursor: pointer;
             margin-top: 30px;
-            box-shadow: 0 4px 10px rgba(186, 140, 99, 0.3);
+            box-shadow: 0 4px 10px rgba(255, 117, 143, 0.3);
             transition: transform 0.2s;
         }
 
@@ -81,28 +82,44 @@
             transform: scale(0.95);
         }
 
-        /* PAGE 1: Passcode Lock */
+        /* PAGE 1: Passcode Lock with Photo 1 Background */
         #page1 {
             justify-content: space-between;
-            padding: 40px 24px;
+            padding: 50px 24px 40px 24px;
+            background-image: url('photo1.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
         }
 
-        /* การจัดวางรูปหน้าแรก: วางไว้ด้านบนสุดเป็นจุดดึงสายตา */
-        .img-wrapper-p1 {
-            width: 85%;
-            aspect-ratio: 1/1;
-            margin-bottom: 10px;
+        /* Overlay สีชมพูโปร่งบางๆ เพื่อคุมโทนและช่วยให้กล่องข้อความเด่นขึ้น */
+        #page1::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 240, 245, 0.2);
+            z-index: 1;
+        }
+
+        .passcode-header, .keypad {
+            position: relative;
+            z-index: 2;
         }
 
         .passcode-header {
             text-align: center;
+            width: 100%;
         }
 
         .passcode-header h2 {
-            font-size: 1.4rem;
-            color: #6c584c;
-            margin-bottom: 12px;
-            font-weight: 500;
+            font-size: 1.6rem;
+            color: #ffffff;
+            margin-bottom: 15px;
+            font-weight: 600;
+            text-shadow: 0 2px 8px rgba(255, 77, 109, 0.6);
         }
 
         .dots-container {
@@ -110,18 +127,24 @@
             gap: 15px;
             justify-content: center;
             margin-top: 5px;
+            background-color: #ffffff; /* กล่องขาวทึบปกติ */
+            padding: 12px 25px;
+            border-radius: 20px;
+            display: inline-flex;
+            box-shadow: 0 4px 10px rgba(255, 77, 109, 0.15);
         }
 
         .dot {
             width: 12px;
             height: 12px;
-            border: 2px solid #d4a373;
+            border: 2px solid #ffccd5;
             border-radius: 50%;
             transition: background 0.1s;
         }
 
         .dot.filled {
-            background-color: #d4a373;
+            background-color: #ff758f; /* จุดที่ใส่แล้วสีชมพูเข้ม */
+            border-color: #ff758f;
         }
 
         .keypad {
@@ -131,28 +154,33 @@
             width: 100%;
             max-width: 280px;
             margin-top: 20px;
+            margin-bottom: 20px;
         }
 
+        /* ปุ่มกดปกติ สีขาวทึบ ตัวหนังสือชมพู ไม่มีเอฟเฟกต์กระจก */
         .key {
             aspect-ratio: 1/1;
             border-radius: 50%;
-            border: 1px solid #faedcd;
-            background-color: #fefae0;
+            border: 2px solid #ffecd2;
+            background-color: #ffffff; /* สีขาวทึบปกติ */
             font-size: 1.6rem;
-            color: #6c584c;
+            color: #ff4d6d; /* ตัวอักษรสีชมพู */
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            font-weight: 500;
-            transition: background 0.1s;
+            font-weight: 600;
+            box-shadow: 0 4px 8px rgba(255, 77, 109, 0.15);
+            transition: background 0.1s, transform 0.1s;
+            border: 1px solid #ffccd5;
         }
 
         .key:active {
-            background-color: #e9edc9;
+            background-color: #fff0f5;
+            transform: scale(0.95);
         }
 
-        /* เอฟเฟกต์สั่นเมื่อกดรหัสผิด */
+        /* เอฟเฟกต์สั่นเมื่อกดรหัสผิด (สั่นเฉพาะกล่อง ไม่รีเฟรชหน้าเว็บ) */
         @keyframes shake {
             0%, 100% { transform: translateX(0); }
             20%, 60% { transform: translateX(-10px); }
@@ -166,13 +194,12 @@
         /* PAGE 2: Counter */
         #page2 h1 {
             font-size: 1.6rem;
-            color: #6c584c;
+            color: #ff4d6d;
             text-align: center;
             margin-bottom: 25px;
             font-weight: 600;
         }
 
-        /* การจัดวางรูปหน้าสอง: วางไว้ตรงกลางระหว่างหัวข้อกับตัวนับเวลา */
         .img-wrapper-p2 {
             width: 90%;
             max-height: 220px;
@@ -184,35 +211,28 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 10px;
-        }
-
-        /* แถวสองสำหรับ Minutes & Seconds ขยายให้สมดุล */
-        .countdown-container .time-box:nth-child(4),
-        .countdown-container .time-box:nth-child(5) {
-            grid-column: span 1;
-        }
-        .countdown-container {
             justify-content: center;
         }
 
         .time-box {
-            background: #faedcd;
+            background: #fff0f5; /* กล่องเวลาชมพูอ่อน */
             padding: 12px 5px;
             border-radius: 12px;
             text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            box-shadow: 0 4px 6px rgba(255, 77, 109, 0.05);
+            border: 1px solid #ffccd5;
         }
 
         .time-num {
             font-size: 1.4rem;
             font-weight: 700;
-            color: #6c584c;
+            color: #ff4d6d;
             display: block;
         }
 
         .time-label {
             font-size: 0.75rem;
-            color: #a3b18a;
+            color: #ff758f;
             text-transform: uppercase;
             font-weight: 600;
             margin-top: 2px;
@@ -223,19 +243,20 @@
             justify-content: flex-start;
             padding-top: 40px;
             padding-bottom: 40px;
+            background-color: #fff0f5;
         }
 
         .letter-paper {
-            background: #fffdf9;
+            background: #ffffff; /* กระดาษจดหมายสีขาวสะอาด */
             width: 100%;
             padding: 25px 20px;
             border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
-            border: 1px solid #f4eae1;
+            box-shadow: 0 4px 15px rgba(255, 77, 109, 0.1);
+            border: 1px solid #ffccd5;
             line-height: 1.6;
             font-size: 1rem;
-            color: #555;
-            white-space: pre-line; /* รักษาการย่อหน้า */
+            color: #4a4a4a;
+            white-space: pre-line;
             text-align: left;
         }
 
@@ -243,7 +264,7 @@
             display: inline-block;
             width: 2px;
             height: 15px;
-            background-color: #d4a373;
+            background-color: #ff4d6d;
             animation: blink 0.7s infinite;
             vertical-align: middle;
             margin-left: 2px;
@@ -260,10 +281,6 @@
 
         <!-- PAGE 1: PASSCODE -->
         <div id="page1" class="page active">
-            <!-- จัดวางรูปไว้ด้านบนเพื่อดึงดูดสายตาตั้งแต่เปิดมา -->
-            <div class="img-wrapper-p1">
-                <img src="photo1.jpg" alt="Our Memory 1" onerror="this.style.display='none'; alert('Please place photo1.jpg in the same folder');">
-            </div>
             
             <div class="passcode-header">
                 <h2>Enter the Passcode</h2>
@@ -297,7 +314,6 @@
         <div id="page2" class="page">
             <h1>Happy official 1st anniversary</h1>
             
-            <!-- จัดวางรูปไว้ตรงกลาง เพื่อสร้างสมดุลระหว่าง Text ด้านบน และตัวนับเวลาด้านล่าง -->
             <div class="img-wrapper-p2">
                 <img src="photo2.jpg" alt="Our Memory 2" onerror="this.style.display='none';">
             </div>
@@ -325,7 +341,6 @@
     <script>
         // --- CONFIGURATION ---
         const CORRECT_PASSCODE = "270725";
-        // ตั้งค่าวันครบรอบปีแรกของคุณที่นี่ (Format: YYYY-MM-DDTHH:mm:ss)
         const ANNIVERSARY_DATE = new Date("2025-07-27T00:00:00"); 
 
         // --- PASSCODE SYSTEM ---
@@ -366,13 +381,13 @@
                 navigateTo('page2');
                 startTimer();
             } else {
-                // เอฟเฟกต์สั่นเมื่อรหัสผิด
+                // เพิ่มคลาสสั่นเมื่อรหัสผิด
                 page1.classList.add('shake');
-                // ฟังก์ชันสั่นของมือถือ (ถ้าเครื่องรองรับ)
                 if (navigator.vibrate) {
                     navigator.vibrate(200);
                 }
                 
+                // เมื่อสั่นเสร็จจะรีเซ็ตค่าตัวเลขในกล่องรหัสเพื่อป้อนใหม่ทันที โดยไม่มีการโหลดหน้าเว็บใหม่
                 setTimeout(() => {
                     page1.classList.remove('shake');
                     currentInput = "";
@@ -391,14 +406,12 @@
             function updateCounter() {
                 const now = new Date();
                 
-                // คำนวณความต่างแบบละเอียด (ปี เดือน วัน นาที วินาที)
                 let years = now.getFullYear() - ANNIVERSARY_DATE.getFullYear();
                 let months = now.getMonth() - ANNIVERSARY_DATE.getMonth();
                 let days = now.getDate() - ANNIVERSARY_DATE.getDate();
                 
                 if (days < 0) {
                     months--;
-                    // หาจำนวนวันของเดือนที่แล้ว
                     const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
                     days += prevMonth;
                 }
@@ -409,12 +422,10 @@
                 }
 
                 const diffMs = now - ANNIVERSARY_DATE;
-                // คำนวณนาทีและวินาทีที่เหลือเศษจากวัน
                 const totalSeconds = Math.floor(diffMs / 1000);
                 const minutes = Math.floor((totalSeconds % 3600) / 60);
                 const seconds = totalSeconds % 60;
 
-                // อัปเดตลงหน้าจอ (ใส่เลข 0 นำหน้าถ้ามีหลักเดียว)
                 document.getElementById('years').innerText = String(Math.max(0, years)).padStart(2, '0');
                 document.getElementById('months').innerText = String(Math.max(0, months)).padStart(2, '0');
                 document.getElementById('days').innerText = String(Math.max(0, days)).padStart(2, '0');
@@ -453,14 +464,10 @@ Happy 1st Anniversary, my love. Here's to forever.`;
             if (index < letterText.length) {
                 document.getElementById("typing-text").textContent += letterText.charAt(index);
                 index++;
-                // เลื่อนหน้าจอลงด้านล่างอัตโนมัติเมื่อข้อความยาวขึ้น เพื่อไม่ให้ตกจอตัวเครื่อง
                 const container = document.querySelector('.phone-container');
                 container.scrollTop = container.scrollHeight;
-                
-                // ปรับความเร็วในการพิมพ์ตรงนี้ (มิลลิวินาทีต่อตัวอักษร)
                 setTimeout(typeWriter, 40); 
             } else {
-                // พิมพ์เสร็จแล้วให้ซ่อน Cursor กระพริบ
                 document.getElementById("cursor").style.display = "none";
             }
         }
