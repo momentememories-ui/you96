@@ -16,10 +16,13 @@
         button.next-btn { background-color: #ff758f; color: white; border: none; padding: 14px 28px; font-size: 1.1rem; font-weight: 600; border-radius: 30px; cursor: pointer; margin-top: 30px; box-shadow: 0 4px 10px rgba(255, 117, 143, 0.3); transition: transform 0.2s; }
         button.next-btn:active { transform: scale(0.95); }
         
-        /* สไตล์สำหรับควันธรรมชาติ */
+        /* สไตล์ควันธรรมชาติ */
         .smoke-natural { position: absolute; width: 20px; height: 20px; background: rgba(220, 220, 220, 0.6); border-radius: 50%; filter: blur(5px); pointer-events: none; animation: rise 2s ease-out forwards; }
         @keyframes rise { 0% { opacity: 0.7; transform: translateY(0) scale(0.5); } 100% { opacity: 0; transform: translateY(-50px) scale(2); } }
-        .my-candle { transition: opacity 0.5s ease; }
+        
+        /* สไตล์เทียนดับแบบสมูท */
+        .my-candle { transition: all 0.8s ease-out; filter: brightness(1) grayscale(0); }
+        .candle-off { filter: brightness(0.3) grayscale(0.7); }
         
         #page0 { background-image: url('photo1.jpg'); background-size: cover; background-position: center top; position: relative; justify-content: flex-end; padding: 60px 24px 60px 24px; }
         #page0::before, #page1::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(255, 240, 245, 0.15); z-index: 1; }
@@ -61,7 +64,7 @@
             <div class="keypad"><div class="key" onclick="pressKey('1')">1</div><div class="key" onclick="pressKey('2')">2</div><div class="key" onclick="pressKey('3')">3</div><div class="key" onclick="pressKey('4')">4</div><div class="key" onclick="pressKey('5')">5</div><div class="key" onclick="pressKey('6')">6</div><div class="key" onclick="pressKey('7')">7</div><div class="key" onclick="pressKey('8')">8</div><div class="key" onclick="pressKey('9')">9</div><div></div><div class="key" onclick="pressKey('0')">0</div><div class="key" onclick="clearLast()">&larr;</div></div>
         </div>
         <div id="page2" class="page">
-            <h1 id="counter-title">Countdown to our 1st Anniversary</h1>
+            <h1 id="counter-title">Countdown to our 6th Anniversary</h1>
             <div class="img-wrapper-p2"><img src="photo2.jpg" alt="Our Memory 2" onerror="this.style.display='none';"></div>
             <div class="horizontal-counter"><span class="time-unit" id="days-box">00</span><span class="colon">:</span><span class="time-unit" id="hours-box">00</span><span class="colon">:</span><span class="time-unit" id="minutes-box">00</span><span class="colon">:</span><span class="time-unit" id="seconds-box">00</span></div>
             <div class="labels-row"><span>days</span><span>hours</span><span>mins</span><span>secs</span></div>
@@ -119,17 +122,15 @@
         function finishBlowing() { 
             const candles = document.querySelectorAll('.my-candle');
             candles.forEach(c => {
-                c.style.opacity = '0';
+                c.classList.add('candle-off'); // ดับแบบสมูท
                 setTimeout(() => {
-                    c.src = 'candle-off.png';
-                    c.style.opacity = '1';
                     const smoke = document.createElement('div');
                     smoke.className = 'smoke-natural';
                     smoke.style.left = (parseInt(c.style.left) + 30) + 'px';
                     smoke.style.top = (parseInt(c.style.top) - 10) + 'px';
                     document.getElementById('cake-area').appendChild(smoke);
                     setTimeout(() => smoke.remove(), 2000);
-                }, 500);
+                }, 300);
             });
             document.getElementById('blow-btn').style.display = 'none';
         }
