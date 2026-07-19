@@ -206,9 +206,9 @@
             animation: shake 0.3s ease-in-out;
         }
 
-        /* NEW PAGE 2: Counter ปรับปรุงตามรูปเรฟ */
+        /* PAGE 2: Counter ปรับเป็นแนวนอนบรรทัดเดียว */
         #page2 {
-            justify-content: flex-start;
+            justify-content: center;
             background-color: #ffffff;
             padding-top: 20px;
             padding-bottom: 30px;
@@ -219,14 +219,14 @@
             font-size: 1.4rem;
             color: #ff758f;
             text-align: center;
-            margin-bottom: 15px;
+            margin-bottom: 25px;
             font-weight: 600;
         }
 
         .img-wrapper-p2 {
             width: 85%;
-            max-height: 200px;
-            margin-bottom: 25px;
+            max-height: 220px;
+            margin-bottom: 35px;
             display: flex;
             justify-content: center;
         }
@@ -238,58 +238,44 @@
             border-radius: 20px;
         }
 
-        /* สไตล์ชุดตัวเลขและตัวหนังสือแบบอ้วนกลมน่ารักตามเรฟ */
-        .cute-counter-container {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 16px;
-            margin-top: 5px;
-        }
-
-        .counter-row {
-            text-align: center;
-            width: 100%;
-        }
-
-        .cute-num {
+        /* กล่องครอบเวลานอนบรรทัดเดียว */
+        .horizontal-counter {
             font-family: 'Fredoka', sans-serif;
             font-weight: 700;
-            font-size: 2.6rem;
-            line-height: 1;
-            display: block;
-            letter-spacing: 1px;
-            /* เพิ่มขอบและเงาจางๆ ให้ตัวเลขเด้งหนาน่ารัก */
+            font-size: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            width: 100%;
+            color: #ff758f;
+            /* ขอบและเงาแบบในเรฟ */
             text-shadow: 1px 1px 0px #fff, -1px -1px 0px #fff, 1px -1px 0px #fff, -1px 1px 0px #fff, 0px 4px 8px rgba(0,0,0,0.06);
+            margin-bottom: 15px;
         }
 
-        .cute-label {
+        .time-unit {
+            display: inline-block;
+        }
+        
+        /* สีกระจายแบบพาสเทลสวยงาม */
+        #days-box { color: #ff85a2; }
+        #hours-box { color: #fbc4ab; }
+        #minutes-box { color: #b7e4c7; }
+        #seconds-box { color: #a8dadc; }
+        .colon { color: #ffccd5; font-size: 2.2rem; padding: 0 2px; }
+
+        /* ป้ายกำกับเล็กๆ บอกหน่วยด้านล่าง */
+        .labels-row {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
             font-family: 'Fredoka', sans-serif;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             font-weight: 600;
-            margin-top: 2px;
-            display: block;
+            color: #ffa6c9;
+            margin-bottom: 30px;
         }
-
-        /* ไล่สีสันพาสเทลตามหน่วยใหญ่ลงไปเล็ก */
-        .color-years { color: #ff85a2; }
-        .label-years { color: #ffa6c9; }
-
-        .color-months { color: #ffb3c6; }
-        .label-months { color: #ffccd5; }
-
-        .color-days { color: #fbc4ab; }
-        .label-days { color: #fcd5ce; }
-
-        .color-hours { color: #b7e4c7; }
-        .label-hours { color: #d8f3dc; }
-
-        .color-minutes { color: #c0b9dd; }
-        .label-minutes { color: #d6d2ed; }
-
-        .color-seconds { color: #a8dadc; }
-        .label-seconds { color: #e1f5fe; }
 
         /* PAGE 3: Letter */
         #page3 {
@@ -369,40 +355,31 @@
             </div>
         </div>
 
-        <!-- PAGE 2: COUNTER (ปรับแต่งตามรูปเรฟฟอนต์อ้วนกลมแยกชั้น) -->
+        <!-- PAGE 2: COUNTER (ปรับเป็นนับถอยหลัง แนวนอนบรรทัดเดียว วัน:ชม:นาที:วิ) -->
         <div id="page2" class="page">
-            <h1>Happy official 1st anniversary</h1>
+            <h1>Countdown to our 1st Anniversary</h1>
             
             <div class="img-wrapper-p2">
                 <img src="photo2.jpg" alt="Our Memory 2" onerror="this.style.display='none';">
             </div>
 
-            <!-- การแสดงผลเวลาน่ารักๆ เรียงจากหน่วยใหญ่ลงไปเล็ก -->
-            <div class="cute-counter-container">
-                <div class="counter-row">
-                    <span class="cute-num color-years" id="years">00</span>
-                    <span class="cute-label label-years">years</span>
-                </div>
-                <div class="counter-row">
-                    <span class="cute-num color-months" id="months">00</span>
-                    <span class="cute-label label-months">months</span>
-                </div>
-                <div class="counter-row">
-                    <span class="cute-num color-days" id="days">00</span>
-                    <span class="cute-label label-days">days</span>
-                </div>
-                <div class="counter-row">
-                    <span class="cute-num color-hours" id="hours">00</span>
-                    <span class="cute-label label-hours">hours</span>
-                </div>
-                <div class="counter-row">
-                    <span class="cute-num color-minutes" id="minutes">00</span>
-                    <span class="cute-label label-minutes">minutes</span>
-                </div>
-                <div class="counter-row">
-                    <span class="cute-num color-seconds" id="seconds">00</span>
-                    <span class="cute-label label-seconds">seconds</span>
-                </div>
+            <!-- แสดงตัวเลขแนวนอนบรรทัดเดียว คั่นด้วย : -->
+            <div class="horizontal-counter">
+                <span class="time-unit" id="days-box">00</span>
+                <span class="colon">:</span>
+                <span class="time-unit" id="hours-box">00</span>
+                <span class="colon">:</span>
+                <span class="time-unit" id="minutes-box">00</span>
+                <span class="colon">:</span>
+                <span class="time-unit" id="seconds-box">00</span>
+            </div>
+
+            <!-- คำอธิบายหน่วยเวลาด้านล่างตัวเลข -->
+            <div class="labels-row">
+                <span>days</span>
+                <span>hours</span>
+                <span>mins</span>
+                <span>secs</span>
             </div>
 
             <button class="next-btn" onclick="goToLetter()">Click to read my letter</button>
@@ -420,7 +397,8 @@
     <script>
         // --- CONFIGURATION ---
         const CORRECT_PASSCODE = "270725";
-        const ANNIVERSARY_DATE = new Date("2025-07-27T00:00:00"); 
+        // ตั้งเป้าหมายนับถอยหลังไปสู่วันที่ 27 กรกฎาคม 2569 (2026)
+        const TARGET_DATE = new Date("2026-07-27T00:00:00").getTime(); 
 
         // --- PASSCODE SYSTEM ---
         let currentInput = "";
@@ -458,7 +436,7 @@
         function checkPasscode() {
             if (currentInput === CORRECT_PASSCODE) {
                 navigateTo('page2');
-                startTimer();
+                startCountdown();
             } else {
                 page1.classList.add('shake');
                 if (navigator.vibrate) {
@@ -478,43 +456,35 @@
             document.getElementById(pageId).classList.add('active');
         }
 
-        // --- REAL-TIME COUNTER ---
-        function startTimer() {
-            function updateCounter() {
-                const now = new Date();
-                
-                let years = now.getFullYear() - ANNIVERSARY_DATE.getFullYear();
-                let months = now.getMonth() - ANNIVERSARY_DATE.getMonth();
-                let days = now.getDate() - ANNIVERSARY_DATE.getDate();
-                
-                if (days < 0) {
-                    months--;
-                    const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
-                    days += prevMonth;
-                }
-                
-                if (months < 0) {
-                    years--;
-                    months += 12;
+        // --- COUNTDOWN SYSTEM (วัน : ชั่วโมง : นาที : วินาที) ---
+        function startCountdown() {
+            function updateTimer() {
+                const now = new Date().getTime();
+                const difference = TARGET_DATE - now;
+
+                if (difference <= 0) {
+                    document.getElementById('days-box').innerText = "00";
+                    document.getElementById('hours-box').innerText = "00";
+                    document.getElementById('minutes-box').innerText = "00";
+                    document.getElementById('seconds-box').innerText = "00";
+                    return;
                 }
 
-                const diffMs = now - ANNIVERSARY_DATE;
-                const totalSeconds = Math.floor(diffMs / 1000);
-                const hours = Math.floor((totalSeconds % (3600 * 24)) / 3600);
-                const minutes = Math.floor((totalSeconds % 3600) / 60);
-                const seconds = totalSeconds % 60;
+                // คำนวณหา วัน ชั่วโมง นาที วินาที จากเวลาที่เหลือทั้งหมด
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
-                // อัปเดตข้อมูลตัวเลขลงหน้าจอในหน่วยที่แยกออกจากกันแบบละเอียด
-                document.getElementById('years').innerText = String(Math.max(0, years)).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                document.getElementById('months').innerText = String(Math.max(0, months)).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                document.getElementById('days').innerText = String(Math.max(0, days)).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                document.getElementById('hours').innerText = String(Math.max(0, hours)).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                document.getElementById('minutes').innerText = String(Math.max(0, minutes)).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                document.getElementById('seconds').innerText = String(Math.max(0, seconds)).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                // แสดงผลแบบใส่ 0 ข้างหน้าถ้าหลักเดียว
+                document.getElementById('days-box').innerText = String(days).padStart(2, '0');
+                document.getElementById('hours-box').innerText = String(hours).padStart(2, '0');
+                document.getElementById('minutes-box').innerText = String(minutes).padStart(2, '0');
+                document.getElementById('seconds-box').innerText = String(seconds).padStart(2, '0');
             }
 
-            updateCounter();
-            setInterval(updateCounter, 1000);
+            updateTimer();
+            setInterval(updateTimer, 1000);
         }
 
         // --- TYPING LETTER SYSTEM ---
